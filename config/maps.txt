@@ -17,8 +17,12 @@ map hammerhead
 	voteweight 1.5
 endmap
 
+map valkyrie
+endmap
+
 map aegis
 	voteweight 0.5
+	disabled
 endmap
 
 map nsv_taojhug
@@ -26,7 +30,6 @@ map nsv_taojhug
 endmap
 
 map valkyrie
-	disabled
 endmap
 
 #BEGIN DEBUG MAPS
