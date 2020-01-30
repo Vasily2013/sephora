@@ -29,9 +29,6 @@ map nsv_taojhug
 	disabled
 endmap
 
-map valkyrie
-endmap
-
 #BEGIN DEBUG MAPS
 
 map testship
