@@ -72,7 +72,7 @@
 	max_integrity = 500;
 	name = "brig cell grille"
 	},
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -1428,7 +1428,7 @@
 	},
 /obj/machinery/door/airlock/highsecurity/ship,
 /obj/machinery/door/firedoor,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -1438,7 +1438,7 @@
 /turf/closed/wall/r_wall/ship,
 /area/security/brig)
 "dU" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1449,7 +1449,7 @@
 	name = "brig cell grille"
 	},
 /obj/machinery/door/firedoor,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -1763,7 +1763,7 @@
 	max_integrity = 500;
 	name = "brig cell grille"
 	},
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -1833,7 +1833,7 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "eO" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1955,13 +1955,13 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "fh" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/security/warden)
 "fi" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -2300,7 +2300,7 @@
 /turf/open/floor/plasteel/dark,
 /area/lawoffice)
 "fT" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -2452,13 +2452,13 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "gn" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/security)
 "go" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -3326,7 +3326,7 @@
 /area/maintenance/department/engine)
 "ir" = (
 /obj/structure/grille,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/explab)
 "is" = (
@@ -3771,7 +3771,7 @@
 /turf/open/floor/plasteel/ship/techfloor/alt,
 /area/hallway/nsv/deck2/frame1/port)
 "jq" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -3781,7 +3781,7 @@
 /turf/open/floor/plasteel/ship/techfloor/alt,
 /area/hallway/nsv/deck2/frame1/port)
 "js" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -4187,7 +4187,7 @@
 "kl" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/lab)
 "km" = (
@@ -4229,7 +4229,7 @@
 /turf/closed/wall/ship,
 /area/crew_quarters/cafeteria)
 "ks" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -6112,7 +6112,7 @@
 /area/science/server)
 "oF" = (
 /obj/structure/grille,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "oG" = (
@@ -6844,7 +6844,7 @@
 /area/maintenance/department/engine)
 "qb" = (
 /obj/structure/grille,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/server)
 "qc" = (
@@ -8895,7 +8895,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/frame1/starboard)
 "ul" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -9973,7 +9973,7 @@
 /turf/open/floor/plasteel/ship/techfloor,
 /area/hallway/nsv/deck2/frame5/starboard)
 "wF" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -11130,7 +11130,7 @@
 /turf/open/floor/plating,
 /area/engine/break_room)
 "AX" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -11786,7 +11786,7 @@
 /turf/open/floor/plating,
 /area/engine/break_room)
 "Eq" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille{
 	max_integrity = 500;
 	name = "brig cell grille"
@@ -12173,7 +12173,7 @@
 "Gs" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -12345,7 +12345,7 @@
 	name = "brig cell grille"
 	},
 /obj/machinery/door/firedoor,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/security/brig)

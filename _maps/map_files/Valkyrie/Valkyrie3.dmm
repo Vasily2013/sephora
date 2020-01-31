@@ -843,18 +843,18 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cn" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "co" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/hallway/nsv/deck3/frame2/port)
 "cp" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -890,7 +890,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "cs" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1143,7 +1143,7 @@
 /area/quartermaster/office)
 "cT" = (
 /obj/structure/grille,
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck3/frame4/central)
 "cU" = (
@@ -1381,7 +1381,7 @@
 /turf/open/floor/plasteel/ship,
 /area/hallway/nsv/deck3/frame2/port)
 "dz" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -1564,7 +1564,7 @@
 /turf/open/floor/plasteel/ship,
 /area/hallway/nsv/deck3/frame2/port)
 "ea" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -2513,7 +2513,7 @@
 /turf/closed/wall/r_wall/ship,
 /area/hallway/nsv/deck3/frame3/central)
 "fZ" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -3414,7 +3414,7 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "iu" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -3913,7 +3913,7 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "jo" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -5079,7 +5079,7 @@
 	id = "CMO";
 	name = "CMO shutters"
 	},
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "lG" = (
@@ -10884,7 +10884,7 @@
 /turf/closed/wall/r_wall/ship,
 /area/engine/atmos)
 "xt" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -10922,7 +10922,7 @@
 /turf/open/floor/plasteel/dark,
 /area/nsv/briefingroom)
 "xx" = (
-/obj/structure/window/ship,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
