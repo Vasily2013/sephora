@@ -1,3 +1,11 @@
+//engineering //reorganization courtesy of NSV13
+#define ACCESS_ENGINE 10 //! Engineering area, power monitor, power flow control console
+#define ACCESS_ENGINE_EQUIP 11 //! APCs, EngiVend/YouTool, engineering equipment lockers
+#define ACCESS_TECH_STORAGE 23
+#define ACCESS_ATMOSPHERICS 24
+#define ACCESS_CONSTRUCTION 32
+#define ACCESS_CE 56
+
 #define ACCESS_SECURITY 1 //! Security equipment, security records, gulag item storage, secbots
 #define ACCESS_BRIG 2 //! Brig cells+timers, permabrig, gulag+gulag shuttle, prisoner management console
 #define ACCESS_ARMORY 3 //! Armory, gulag teleporter, execution chamber
@@ -7,8 +15,7 @@
 #define ACCESS_TOX 7 //! R&D department, R&D console, burn chamber on some maps
 #define ACCESS_TOX_STORAGE 8 //! Toxins storage, burn chamber on some maps
 #define ACCESS_GENETICS 9
-#define ACCESS_ENGINE 10 //! Engineering area, power monitor, power flow control console
-#define ACCESS_ENGINE_EQUIP 11 //! APCs, EngiVend/YouTool, engineering equipment lockers
+
 #define ACCESS_MAINT_TUNNELS 12
 #define ACCESS_EXTERNAL_AIRLOCKS 13
 #define ACCESS_CHANGE_IDS 15
@@ -19,8 +26,7 @@
 #define ACCESS_CAPTAIN 20
 #define ACCESS_ALL_PERSONAL_LOCKERS 21
 #define ACCESS_CHAPEL_OFFICE 22
-#define ACCESS_TECH_STORAGE 23
-#define ACCESS_ATMOSPHERICS 24
+
 #define ACCESS_BAR 25
 #define ACCESS_JANITOR 26
 #define ACCESS_CREMATORIUM 27
@@ -28,7 +34,7 @@
 #define ACCESS_ROBOTICS 29
 #define ACCESS_RD 30
 #define ACCESS_CARGO 31
-#define ACCESS_CONSTRUCTION 32
+
 #define ACCESS_CHEMISTRY 33
 #define ACCESS_HYDROPONICS 35
 #define ACCESS_LIBRARY 37
@@ -45,7 +51,7 @@
 #define ACCESS_VAULT 53
 #define ACCESS_MINING_STATION 54
 #define ACCESS_XENOBIOLOGY 55
-#define ACCESS_CE 56
+
 #define ACCESS_HOP 57
 #define ACCESS_HOS 58
 #define ACCESS_APOTHECARY 59
