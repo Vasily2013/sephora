@@ -137,10 +137,6 @@
 /obj/machinery/door/airlock/engineering,
 /turf/open/floor/plasteel,
 /area/space)
-"aK" = (
-/obj/machinery/door/airlock/grunge,
-/turf/open/floor/engine,
-/area/space)
 "aL" = (
 /obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plasteel/dark,
@@ -215,6 +211,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"cZ" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "kr" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/white,
@@ -224,6 +226,24 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
+/area/space)
+"lY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"mn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"oA" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "pT" = (
 /obj/structure/table/wood,
@@ -237,6 +257,21 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/space)
+"re" = (
+/obj/structure/particle_accelerator/particle_emitter/right{
+	icon_state = "emitter_right";
+	dir = 8
+	},
+/obj/item/stack/cable_coil/red,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"rp" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/space)
 "sg" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -245,13 +280,57 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cafeteria,
 /area/space)
+"sw" = (
+/obj/machinery/particle_accelerator/control_box,
+/obj/item/stack/cable_coil/red,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"tt" = (
+/obj/structure/particle_accelerator/end_cap{
+	icon_state = "end_cap";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "vt" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/space)
+"wV" = (
+/obj/structure/particle_accelerator/particle_emitter/center{
+	icon_state = "emitter_center";
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "xq" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
+/area/space)
+"zb" = (
+/obj/structure/particle_accelerator/power_box{
+	icon_state = "power_box";
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"zu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Di" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "Dp" = (
 /obj/structure/table/glass,
@@ -261,11 +340,30 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/space)
+"Fh" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "FL" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
+/area/space)
+"HF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"HX" = (
+/obj/structure/particle_accelerator/fuel_chamber{
+	icon_state = "fuel_chamber";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "HZ" = (
 /obj/structure/table/glass,
@@ -279,12 +377,44 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/space)
+"ON" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
+"Pc" = (
+/obj/effect/turf_decal/stripes/red/full,
+/turf/open/floor/plasteel/dark,
+/area/space)
+"TD" = (
+/obj/structure/particle_accelerator/particle_emitter/left{
+	icon_state = "emitter_left";
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/space)
 "TR" = (
 /turf/open/floor/plating/airless,
+/area/space)
+"Vp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "VO" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
+/area/space)
+"Wn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
 /area/space)
 "WF" = (
 /obj/structure/table/wood,
@@ -18158,9 +18288,9 @@ ab
 ab
 ab
 ab
-aU
-aU
-aU
+ad
+ad
+ad
 ab
 ab
 ab
@@ -18409,18 +18539,18 @@ aU
 ab
 aU
 ab
-aa
-aa
-aa
-aa
-aa
+aM
+aM
+aM
+aM
 ad
 aO
 aO
 aO
-aK
 aO
-aK
+aO
+ad
+aM
 aM
 aM
 aM
@@ -18666,18 +18796,18 @@ aU
 ab
 aU
 ab
-aa
-aa
-aa
-aa
-aa
-ad
+aM
+aM
+aM
+aM
 aO
 aO
 aO
-ad
 aO
-ad
+aO
+aO
+aO
+aM
 aM
 aM
 aM
@@ -18923,18 +19053,18 @@ aU
 ab
 aU
 ab
-aa
-aa
-aa
-aa
-aa
+aM
+aM
+aM
+aM
 ad
 aO
 aO
 aO
-aK
 aO
-aK
+aO
+ad
+aM
 aM
 aM
 aM
@@ -19180,18 +19310,18 @@ aU
 ab
 aU
 ab
-aa
-aa
-aa
-aa
-aa
+aM
+aM
+aM
+aM
+ab
 ab
 ad
 ad
 ad
 ab
-ad
 ab
+aM
 aM
 aM
 aM
@@ -19437,16 +19567,16 @@ aU
 ab
 aU
 ab
-aa
-aa
-aa
-aa
-aa
-ab
 aM
 aM
 aM
 aM
+aM
+oA
+Pc
+Pc
+Pc
+Fh
 aM
 aM
 aM
@@ -19694,16 +19824,16 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
-aa
-aa
-ab
 aM
 aM
 aM
 aM
+aM
+cZ
+TD
+wV
+re
+ON
 aM
 aM
 aM
@@ -19951,16 +20081,16 @@ aU
 aU
 aU
 ab
-aa
-aa
-aa
-aa
-aa
-ab
 aM
 aM
 aM
 aM
+aM
+Di
+lY
+zb
+lY
+HF
 aM
 aM
 aM
@@ -20208,16 +20338,16 @@ aU
 aU
 aU
 ab
-OL
-OL
-aM
-aM
-aM
-ab
 aM
 aM
 aM
 aM
+aM
+Vp
+sw
+HX
+ao
+rp
 aM
 aM
 aM
@@ -20470,11 +20600,11 @@ aM
 aM
 aM
 aM
-aM
-aM
-aM
-aM
-aM
+Vp
+ao
+tt
+ao
+rp
 aM
 aM
 aM
@@ -20727,11 +20857,11 @@ aM
 aM
 aM
 aM
-aM
-aM
-aM
-aM
-aM
+Wn
+mn
+mn
+mn
+zu
 aM
 aM
 aM
