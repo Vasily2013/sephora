@@ -126,9 +126,16 @@
 	canSmoothWith = list(/obj/structure/window/reinforced/fulltile/ship,/turf/closed/wall/ship,/turf/closed/wall/r_wall/ship,/obj/machinery/door/airlock/ship,/obj/structure/window/reinforced/fulltile/ship/interior)
 
 /obj/effect/spawner/structure/window/reinforced
-	name = "reinforced window spawner"
-	icon_state = "rwindow_spawner"
-	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/ship/interior)
+    name = "ship reinforced window spawner"
+    color = "#00FF00"
+    icon_state = "rwindow_spawner"
+    spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/ship/interior)
+
+/obj/effect/spawner/structure/window/reinforced/classic
+    name = "Classic reinforced window spawner"
+    color = "#0000FF"
+    icon_state = "rwindow_spawner"
+    spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile)
 
 
 /obj/structure/window/reinforced/ship
