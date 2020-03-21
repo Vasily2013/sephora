@@ -141,7 +141,7 @@
 	righthand_file = ""
 	w_class = WEIGHT_CLASS_GIGANTIC
 	var/speed = 1 //Speed modifier
-	var/consumption = 1 //How fast we burn fuel
+	var/consumption = 0.25 //How fast we burn fuel
 
 /obj/item/twohanded/required/fighter_component/engine/Initialize()
 	. = ..()
@@ -151,7 +151,7 @@
 	name = "Fighter Overclocked Engine"
 	desc = "An overclocked engine assembly for a fighter"
 	speed = 1.2
-	consumption = 1.2
+	consumption = 1
 
 /obj/item/twohanded/required/fighter_component/primary_cannon
 	name = "Fighter Cannon"
@@ -305,6 +305,7 @@
 /obj/structure/reagent_dispensers/fueltank/aviation_fuel
 	name = "Tyrosene fuel pump"
 	desc = "A tank full of high performance aviation fuel with an inbuilt fuel pump for rapid fuel delivery"
+	icon = 'nsv13/icons/obj/objects.dmi'
 	icon_state = "jetfuel" //NSV13 - Modified objects.dmi to include a jet fuel container
 	reagent_id = /datum/reagent/aviation_fuel
 	tank_volume = 3500
