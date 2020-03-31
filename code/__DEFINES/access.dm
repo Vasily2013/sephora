@@ -58,6 +58,7 @@
 #define ACCESS_THEATRE 46
 #define ACCESS_HOP 57
 
+//command
 #define ACCESS_CHANGE_IDS 15
 #define ACCESS_AI_UPLOAD 16
 #define ACCESS_TELEPORTER 17
@@ -65,6 +66,7 @@
 #define ACCESS_HEADS 19 //!Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console
 #define ACCESS_CAPTAIN 20
 #define ACCESS_ALL_PERSONAL_LOCKERS 21
+
 
 
 
