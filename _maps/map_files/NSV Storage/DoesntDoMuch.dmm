@@ -1,0 +1,43 @@
+"a" = (/turf/open/space/basic,/area/space)
+"b" = (/turf/closed/wall/r_wall/ship,/area/space)
+"c" = (/obj/effect/spawner/structure/window/reinforced/ship,/obj/machinery/door/firedoor/heavy,/turf/open/floor/plating,/area/space)
+"d" = (/turf/open/floor/plating,/area/space)
+"e" = (/turf/open/floor/carpet/royalblack,/area/space)
+"f" = (/obj/effect/spawner/structure/window/reinforced,/obj/machinery/door/firedoor/heavy,/turf/open/floor/plating,/area/space)
+"g" = (/obj/structure/bed,/obj/item/bedsheet/centcom,/turf/open/floor/carpet/royalblack,/area/space)
+"h" = (/obj/machinery/computer/atmos_alert{icon_state = "computer"; dir = 4},/obj/machinery/requests_console{announcementConsole = 1; department = "Doesn't-Do-Much"; departmentType = 5; name = "Doesn't-Do-Much's RC"; pixel_x = -32; pixel_y = 0},/turf/open/floor/plating,/area/space)
+"i" = (/obj/machinery/computer/apc_control{icon_state = "computer"; dir = 4},/obj/machinery/newscaster/directional/west,/turf/open/floor/plating,/area/space)
+"j" = (/obj/structure/sign/poster/official/love_ian{pixel_x = -32},/turf/open/floor/plating,/area/space)
+"k" = (/obj/structure/table/wood/bar{dir = 4},/obj/machinery/recharger,/obj/item/card/id/ert/Engineer{registered_name = "Doesn't-Do-Much"},/turf/open/floor/plating,/area/space)
+"l" = (/obj/structure/table/wood/bar{dir = 4},/obj/machinery/microwave,/obj/machinery/airalarm/directional/north,/turf/open/floor/plating,/area/space)
+"m" = (/obj/structure/table/wood/bar{dir = 4},/obj/item/paper_bin,/obj/item/pen/fourcolor,/turf/open/floor/plating,/area/space)
+"n" = (/obj/machinery/suit_storage_unit/ert/engineer,/turf/open/floor/plating,/area/space)
+"o" = (/obj/structure/closet/secure_closet/ertEngi,/obj/item/gun/energy/pulse/pistol/loyalpin,/obj/item/gun/energy/pulse/carbine/loyalpin,/obj/item/pipe_dispenser,/obj/item/storage/belt/utility/chief/full,/obj/item/storage/box/handcuffs,/obj/item/clothing/under/rank/centcom_officer,/obj/item/radio/headset/headset_cent/alt,/obj/item/encryptionkey/heads/ce,/obj/item/holosign_creator/atmos,/obj/item/implanter/mindshield,/obj/item/implanter/krav_maga,/obj/item/storage/belt/security/full,/obj/item/tank/internals/oxygen,/obj/item/tank/internals/emergency_oxygen/magic_oxygen,/obj/item/implanter/krav_maga,/obj/item/implanter/stealth,/obj/item/autosurgeon,/obj/item/organ/cyberimp/brain/anti_drop,/turf/open/floor/plating,/area/space)
+"p" = (/obj/machinery/modular_computer/console/preset/engineering{icon_state = "console"; dir = 4},/obj/structure/sign/poster/contraband/lizard{pixel_x = -32},/obj/structure/cable{icon_state = "0-4"},/turf/open/floor/plating,/area/space)
+"q" = (/obj/structure/closet/secure_closet/freezer/meat,/obj/item/organ/liver,/obj/item/organ/liver,/obj/item/organ/liver,/obj/item/organ/liver,/turf/open/floor/carpet/royalblack,/area/space)
+"r" = (/obj/structure/chair/wood/wings,/obj/structure/sign/plaques/atmos{desc = "This plaque commemorates the crews of the NSV Reliant. For all the charred, dizzy, and brittle men who have died in its hands."; pixel_y = 32},/turf/open/floor/carpet/royalblack,/area/space)
+"s" = (/obj/structure/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 4},/turf/open/floor/carpet/royalblack,/area/space)
+"t" = (/obj/structure/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 8},/obj/machinery/vending/wallmed{pixel_x = 32},/turf/open/floor/carpet/royalblack,/area/space)
+"u" = (/obj/structure/chair/office{dir = 4},/turf/open/floor/plating,/area/space)
+"v" = (/obj/structure/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 1},/turf/open/floor/carpet/royalblack,/area/space)
+"w" = (/obj/structure/filingcabinet/filingcabinet,/obj/structure/sign/warning/enginesafety{pixel_x = -32},/turf/open/floor/plating,/area/space)
+"x" = (/obj/structure/table/wood,/turf/open/floor/carpet/royalblack,/area/space)
+"y" = (/obj/structure/sign/poster/contraband/hacking_guide{pixel_x = 32},/turf/open/floor/carpet/royalblack,/area/space)
+"z" = (/obj/structure/cable{icon_state = "2-8"},/turf/open/floor/carpet/royalblack,/area/space)
+"A" = (/obj/machinery/firealarm/directional/south,/turf/open/floor/carpet/royalblack,/area/space)
+"B" = (/obj/structure/cable{icon_state = "4-8"},/turf/open/floor/plating,/area/space)
+"C" = (/obj/machinery/vending/boozeomat/all_access,/obj/structure/sign/poster/contraband/free_drone{pixel_y = -32},/turf/open/floor/carpet/royalblack,/area/space)
+"D" = (/obj/machinery/vending/cigarette/beach,/obj/structure/sign/poster/contraband/atmosia_independence{desc = "A relic of a legendary rebellion."; pixel_y = -32},/obj/structure/sign/poster/official/help_others{pixel_x = 32},/turf/open/floor/carpet/royalblack,/area/space)
+"E" = (/obj/structure/table/wood/bar{dir = 4},/obj/item/flashlight/lamp/green,/obj/machinery/power/apc/auto_name/south,/obj/structure/cable{icon_state = "0-4"},/obj/structure/cable{icon_state = "4-8"},/turf/open/floor/carpet/royalblack,/area/space)
+"F" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/door/firedoor,/obj/machinery/door/airlock/atmos/glass/critical{name = "Doesn't-Do-Much's Quarters"; req_one_access_txt = "101"},/turf/open/floor/carpet/royalblack,/area/space)
+
+(1,1,1) = {"
+bccbaaaaa
+bnobccbaa
+bjdlqgbcb
+bwddeeryb
+bhdkesxtb
+biumeeveb
+bpBEzACDb
+bffbFbbbb
+"}
