@@ -82,6 +82,9 @@
 #define ACCESS_MINISAT 65
 #define ACCESS_MUNITIONS 69 //NSV13 - Departmental ACCESS
 #define ACCESS_MAA 70 //NSV13 - MAA gets an office
+#define ACCESS_MUNITIONS_STORAGE 71 //NSV13 - Access to ordinance
+#define ACCESS_FIGHTER 72 //NSV13 - Fighternerds
+#define ACCESS_FL 73 //NSV13 - FL tagged decorated fighter
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
