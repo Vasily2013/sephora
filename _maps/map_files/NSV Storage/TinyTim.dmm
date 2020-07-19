@@ -97,7 +97,7 @@
 "bS" = (/obj/machinery/atmospherics/pipe/heat_exchanging/simple{icon_state = "pipe11-2"; dir = 5},/turf/open/space/basic,/area/space)
 "bT" = (/obj/machinery/atmospherics/pipe/heat_exchanging/simple{icon_state = "pipe11-2"; dir = 9},/turf/open/space/basic,/area/space)
 "bU" = (/obj/machinery/stasis,/turf/open/floor/plasteel/dark,/area/space)
-"bV" = (/obj/structure/table/optable,/turf/open/floor/plasteel/dark,/area/space)
+"bV" = (/obj/structure/table/optable,/obj/item/storage/backpack/duffelbag/med/surgery,/turf/open/floor/plasteel/dark,/area/space)
 "bW" = (/obj/machinery/computer/operating{icon_state = "computer"; dir = 4},/turf/open/floor/plasteel/dark,/area/space)
 "bX" = (/obj/machinery/chem_dispenser,/turf/open/floor/plasteel/dark,/area/space)
 "bY" = (/obj/structure/window/plasma/reinforced{icon_state = "plasmarwindow"; dir = 4},/obj/machinery/vending/medical,/turf/open/floor/plasteel/dark,/area/space)
@@ -128,14 +128,14 @@
 "cx" = (/obj/machinery/door/airlock/ship/security/glass,/turf/open/floor/plasteel/dark,/area/space)
 "cy" = (/obj/docking_port/stationary{dir = 4; dwidth = 3; height = 5; id = "mining_home"; name = "mining shuttle bay"; width = 7; roundstart_template = /datum/map_template/shuttle/mining/delta},/turf/open/floor/plating,/area/space)
 "cz" = (/obj/docking_port/stationary{dir = 1; dwidth = 5; height = 7; id = "supply_home"; name = "Cargo Bay"; width = 12},/turf/open/space/basic,/area/space)
-"cA" = (/obj/machinery/door/airlock/ship/external{name = "Cargo Shuttle Airlock"; req_one_access_txt = "31"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/turf/open/floor/plasteel,/area/space)
+"cA" = (/obj/machinery/door/airlock/ship/external{name = "Cargo Shuttle Airlock"; req_one_access_txt = "31"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/open/floor/plasteel,/area/space)
 "cB" = (/obj/machinery/door/airlock/ship/medical,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/turf/open/floor/plasteel/dark,/area/space)
 "cC" = (/obj/machinery/advanced_airlock_controller/directional/west,/turf/open/floor/plasteel/dark,/area/space)
-"cD" = (/obj/machinery/door/airlock/ship/external{name = "Mining Shuttle Airlock"; req_one_access_txt = "48"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/turf/open/floor/plasteel/dark,/area/space)
+"cD" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/open/floor/plasteel/dark,/area/space)
 "cE" = (/obj/effect/spawner/structure/window/reinforced,/obj/machinery/door/poddoor/shutters/preopen{id = "perma"; name = "Perma Shutters"},/turf/open/floor/plating,/area/space)
 "cF" = (/obj/machinery/advanced_airlock_controller/directional/east,/turf/open/floor/plasteel/dark,/area/space)
 "cG" = (/obj/machinery/door/airlock/ship/external{name = "Mining Shuttle Airlock"; req_one_access_txt = "48"},/turf/open/floor/plasteel/dark,/area/space)
-"cH" = (/obj/machinery/computer/shuttle/mining,/turf/open/floor/plasteel/dark,/area/space)
+"cH" = (/obj/machinery/vending/wardrobe/cargo_wardrobe,/turf/open/floor/plasteel/dark,/area/space)
 "cI" = (/obj/effect/turf_decal/delivery,/obj/structure/closet/secure_closet/security,/obj/item/storage/belt/security/full,/turf/open/floor/plasteel/dark,/area/space)
 "cJ" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 8},/turf/open/floor/plasteel/dark,/area/space)
 "cK" = (/obj/machinery/rnd/production/techfab/department/security,/obj/machinery/button/door{id = "perma_vent"; name = "Permabrig Venting"; pixel_x = -8; pixel_y = -22; req_access_txt = "4"},/obj/machinery/button/door{dir = 8; id = "perma"; name = "Perma Shutters"; pixel_x = 8; pixel_y = -22; req_one_access_txt = "2"},/turf/open/floor/plasteel/dark,/area/space)
@@ -227,7 +227,7 @@
 "es" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel/dark,/area/space)
 "et" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,/turf/open/floor/plasteel/dark,/area/space)
 "eu" = (/obj/machinery/door/airlock/glass_large/ship{name = "Bar"},/turf/open/floor/plasteel/dark,/area/space)
-"ev" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 4},/turf/open/floor/plasteel/dark,/area/space)
+"ev" = (/obj/machinery/door/airlock/ship/external{name = "Mining Shuttle Airlock"; req_one_access_txt = "48"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden{icon_state = "pipe11-2"; dir = 4},/turf/open/floor/plasteel/dark,/area/space)
 "ew" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/turf/open/floor/plasteel/dark,/area/space)
 "ex" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 5},/turf/open/floor/plasteel/dark,/area/space)
 "ey" = (/obj/machinery/vending/wardrobe/bar_wardrobe,/turf/open/floor/plasteel/dark,/area/space)
@@ -286,11 +286,23 @@
 "fz" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/turf/open/floor/plasteel/dark,/area/space)
 "fA" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 4},/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{icon_state = "manifold-1"; dir = 4},/turf/open/floor/plasteel/dark,/area/space)
 "fB" = (/obj/machinery/door/airlock/ship/public{name = "Service Supply Closet"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel/dark,/area/space)
-"fC" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel/dark,/area/space)
-"fD" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plasteel/dark,/area/space)
-"fE" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{icon_state = "pipe11-1"; dir = 5},/turf/open/floor/plasteel/dark,/area/space)
+"fC" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden{icon_state = "pipe11-2"; dir = 4},/turf/open/floor/plasteel/dark,/area/space)
+"fD" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{dir = 4},/obj/machinery/atmospherics/pipe/manifold/supply/hidden,/turf/open/floor/plasteel/dark,/area/space)
+"fE" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,/obj/machinery/atmospherics/pipe/manifold/supply/hidden{icon_state = "manifold-2"; dir = 1},/turf/open/floor/plasteel/dark,/area/space)
 "fF" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{icon_state = "pipe11-1"; dir = 6},/turf/open/floor/plasteel/dark,/area/space)
 "fG" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 9},/turf/open/floor/plasteel/dark,/area/space)
+"fH" = (/obj/machinery/vending/wardrobe/sec_wardrobe,/turf/open/floor/plasteel/dark,/area/space)
+"fI" = (/obj/machinery/vending/security,/turf/open/floor/plasteel/dark,/area/space)
+"fY" = (/obj/machinery/door/poddoor{id = "QMLoaddoor"; name = "supply dock loading door"},/turf/open/floor/plasteel/dark,/area/space)
+"fZ" = (/obj/machinery/door/poddoor{id = "QMLoaddoor2"; name = "supply dock loading door"},/turf/open/floor/plasteel/dark,/area/space)
+"ga" = (/obj/machinery/computer/shuttle/mining,/obj/machinery/button/door{id = "QMLoaddoor"; layer = 4; name = "Loading Doors"; pixel_x = -24; pixel_y = -8; req_access_txt = "31"},/turf/open/floor/plasteel/dark,/area/space)
+"gb" = (/obj/machinery/button/door{id = "QMLoaddoor2"; layer = 4; name = "Loading Doors"; pixel_x = 24; pixel_y = 8; req_access_txt = "31"},/turf/open/floor/plasteel/dark,/area/space)
+"gc" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden{icon_state = "pipe11-2"; dir = 9},/turf/open/floor/plasteel/dark,/area/space)
+"gd" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/open/floor/plasteel/dark,/area/space)
+"ge" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/open/floor/plasteel/dark,/area/space)
+"gf" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{icon_state = "pipe11-1"; dir = 5},/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 5},/turf/open/floor/plasteel/dark,/area/space)
+"gg" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/atmospherics/components/binary/dp_vent_pump{icon_state = "dpvent_map-2"; dir = 1},/turf/open/floor/plasteel/dark,/area/space)
+"gh" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 8},/obj/machinery/atmospherics/components/binary/dp_vent_pump{icon_state = "dpvent_map-2"; dir = 8},/turf/open/floor/plasteel/dark,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -318,15 +330,15 @@ aaaaaaaaaaaaaaaaaadldldldldldldldldldldldlaaatatatatatatatatatatatatatatatatatat
 aaaaaaaaaaaaaaaaaadldldldldldldldldldldldlaaatdZdZdZdZdZdZabdAdAefeedBdBdBabababababataaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaadldldldldldldldldldldldlaaatababababababababababababababdQdzabababataaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaadldldldlczdldldldldldldlaaatababdEeKekekekekekekekelababdZabababeeataaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaatabbhcvbhabataaaaaaaaatababebebebebebababababemabababababababataaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaatfYbhcvbhfZataaaaaaaaatababebebebebebababababemabababababababataaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaatcCeLcveLcFataaaaaaaaatababababebebebababababesdfabdQdzabababataaaaaaaaaaaaaaaa
-aaaaaeaeaeaeaeaaaaaaaaatabdacvdaabataaaaaaaaateadQdRababatatatatababeWbnabdZabababeeataaaaaaaaaaaaaaaa
-aaaaaeaeaeaeaeatatatatatabcAcvcAabatatatatatatatatatatatatededatababemabababababababataaaaaaaaaaaaaaaa
-aaaaaeaeaeaeaeatcCabatcHabdaabdaabatababababaWdvababababecaWdvecababemababdQdzabababataaaaaaaaaaaaaaaa
-aaaacyaeaeaeaecGeOdwcDdwdwevaWdaabatfvekekekfdewekekekekflfdewflekekfmababdZabababeeataaaaaaaaaaaaaaaa
-aaaaaeaeaeaeaeatababatdhabdafCdaabcvemabatatatatatateuabatatatatatatatatatatatatatatatataaaaaaaaaaaaaa
-aaaaaeaeaeaeaeatatatatcfabexfDetfFerfAabatababababeYababeZepeEeBeCeDeSatePeQeRataaaaaaaaaaaaaaaaaaaaaa
-aaaaaeaeaeaeaeaaaaatdjcNdkabfEeOfGcvesdfejabababfaepfbfvfwfxekezdfababeFabababataaaaaaaaaaaaaaaaaaaaaa
+aaaaaeaeaeaeaeaaaaaaaaatabggcvggabataaaaaaaaateadQdRababatatatatababeWbnabdZabababeeataaaaaaaaaaaaaaaa
+aaaaaeaeaeaeaeatatatatatfYcAcvcAfZatatatatatatatatatatatatededatababemabababababababataaaaaaaaaaaaaaaa
+aaaaaeaeaeaeaeatcCabatgaabcDabcDgbatababababaWdvababababecaWdvecababemababdQdzabababataaaaaaaaaaaaaaaa
+aaaacyaeaeaeaecGeOghevfCfCfDfEgcabatfvekekekfdewekekekekflfdewflekekfmababdZabababeeataaaaaaaaaaaaaaaa
+aaaaaeaeaeaeaeatababatdhabdagddaabcvemabatatatatatateuabatatatatatatatatatatatatatatatataaaaaaaaaaaaaa
+aaaaaeaeaeaeaeatatatatcfabexgeetfFerfAabatababababeYababeZepeEeBeCeDeSatePeQeRataaaaaaaaaaaaaaaaaaaaaa
+aaaaaeaeaeaeaeaaaaatdjcNdkcHgfeOfGcvesdfejabababfaepfbfvfwfxekezdfababeFabababataaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaatapapatatatatatatatatatatateWbnejababfcdEendwfyabatdTdUdUeVatateUdvdYataaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaavaRadaqawaxayayayayaCbKbzatemabejabfecoffeJfzfheoeqdwdwdfabdSeGabeHeyataaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaatapapatabcccdauaFaFaGbbbbbgfAabatababfgabababemfedUdVdWeXeTdXateAemeNataaaaaaaaaaaaaaaaaaaaaa
@@ -334,8 +346,8 @@ aaaaaaaaaaaaaaatabatataDaBabbiabbAatbdabatatatatatateuematatatatatatatatatfBatat
 aaaaaaaaaaaaaaatbLacaiaHbfaEblbnbBatbdabababababaWdvabemabababababababababemabaWabdvabbraaaaaaaaaaaaaa
 aaaaaaaaaaaaaaatbNagahduazaMdKdfbCatbpekekekekekfdewekfjekekekekekekekekfkfjekfdcudyabbraaaaaaaaaaaaaa
 aaaaaaaaaaaaaaatarabajakaAaOaIaQbEatbdabatatatatctbZatatcvcvcvatcvcvatataJcxatategftatataaaaaaaaaaaaaa
-aaaaaaaaaaaaaaatatalamanatataXatatatcJdfatcicjcpbXcmcTatcOabcPcvababatcIbdabateiehfifnataaaaaaaaaaaaaa
-aaaaaabsbsbsbsbsatbrbrbratbJcrbcbjatbpcwcBcwcwcScqabcaatcQcRcUcVcWabatcIcJdfatfoeIabfpfuaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaatatalamanatataXatatatcJdfatcicjcpbXcmcTatcOabcPcvabfHatcIbdabateiehfifnataaaaaaaaaaaaaa
+aaaaaabsbsbsbsbsatbrbrbratbJcrbcbjatbpcwcBcwcwcScqabcaatcQcRcUcVcWfIatcIcJdfatfoeIabfpfuaaaaaaaaaaaaaa
 aaaaaabsbtbtaVatatafaoafatcXcZbebqateWbnatbWabduababatatcEcEcEatdcabatataJcxatdtduabdmfuaaaaaaaaaaaaaa
 aaaaaabsbtaeaKaLaUaNaPaSaTdbdxbkboatbdabatbVabbUbObPatdpdqdrdscEbdaWdHabbdabatdneMfidofuaaaaaaaaaaaaaa
 aaaaaabsbtbtataYaZbaasafatatatatatatdLcYatatcsatbQbQatdGdEcUcwdMdIdNdJdOdPabatfqabfrfsataaaaaaaaaaaaaa
