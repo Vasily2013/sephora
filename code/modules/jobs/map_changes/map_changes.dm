@@ -5,3 +5,6 @@
 
 #define JOB_MODIFICATION_MAP_NAME "NSV Jeppison"
 #include "..\..\..\..\_maps\map_files\Jeppison\job_changes.dm"
+
+#define JOB_MODIFICATION_MAP_NAME "NSV Hoverfly"
+#include "..\..\..\..\_maps\map_files\Hoverfly\job_changes.dm"
