@@ -1,0 +1,15 @@
+{
+    "map_name": "NSV Hoverfly",
+    "map_path": "map_files/Hoverfly",
+    "map_file": ["Hoverfly.dmm"], 
+    "traits": [{"Linkage": "Self"}],
+    "space_ruin_levels": -1,
+        "shuttles": {
+		"mining": "mining_delta",
+        "emergency": "emergency_goon"},
+    "mine_file": "FOB_Shuttle.dmm",
+    "mine_path": "map_files/Mining/nsv13",
+	"mine_traits": [{"Linkage": "Self"}],
+	"ship_type": "/obj/structure/overmap/nanotrasen/missile_cruiser/starter",
+	"mining_ship_type": "/obj/structure/overmap/nanotrasen/mining_cruiser/nostromo/fob"
+}
