@@ -3,10 +3,11 @@
 //Therefore there needs to be a gap between the flags for the automute flags
 #define MUTE_IC			(1<<0)
 #define MUTE_OOC		(1<<1)
-#define MUTE_PRAY		(1<<2)
-#define MUTE_ADMINHELP	(1<<3)
-#define MUTE_DEADCHAT	(1<<4)
-#define MUTE_MHELP		(1<<5)
+#define MUTE_LOOC       (1<<2) //nsv13
+#define MUTE_PRAY		(1<<3)
+#define MUTE_ADMINHELP	(1<<4)
+#define MUTE_DEADCHAT	(1<<5)
+#define MUTE_MHELP		(1<<6)
 #define MUTE_ALL		(~0)
 
 //Admin Permissions
@@ -65,10 +66,12 @@
 #define ADMIN_PUNISHMENT_MAZING "Puzzle"
 #define ADMIN_PUNISHMENT_FLOORCLUWNE "Floor Cluwne"
 #define ADMIN_PUNISHMENT_CLUWNE "Make Cluwne"
+#define ADMIN_PUNISHMENT_NUGGET "Nugget"
 
-#define AHELP_ACTIVE 1
-#define AHELP_CLOSED 2
-#define AHELP_RESOLVED 3
+#define AHELP_UNCLAIMED 1
+#define AHELP_ACTIVE 2
+#define AHELP_CLOSED 3
+#define AHELP_RESOLVED 4
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 

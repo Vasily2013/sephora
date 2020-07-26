@@ -55,7 +55,7 @@
 	var/chamber_delay_rapid = 2
 	var/chamber_delay = 10
 
-	var/firing_sound = 'nsv13/sound/effects/ship/mac_fire.ogg'
+	var/firing_sound = 'nsv13/sound/effects/ship/tri_mount_fire.ogg'
 	var/fire_animation_length = 5
 	var/fire_mode
 
@@ -71,7 +71,7 @@
 	var/magazine_type = null
 	var/max_ammo = 1
 
-	var/datum/ship_weapon/weapon_type
+	var/datum/ship_weapon/weapon_type = null
 
 	// Things that change while we're operating
 	var/maint_req = 0 //Number of times a weapon can fire until a maintenance cycle is required. This will countdown to 0.
@@ -104,7 +104,7 @@
 /obj/machinery/ship_weapon/proc/PostInitialize()
 	get_ship(error_log=FALSE)
 	if(maintainable)
-		maint_req = rand(15,25) //Setting initial number of cycles until maintenance is required
+		maint_req = rand(20,25) //Setting initial number of cycles until maintenance is required
 		create_reagents(50)
 	icon_state_list = icon_states(icon)
 
@@ -122,14 +122,11 @@
  * Tries to link the ship to an overmap by finding the overmap linked it the area we are in.
  */
 /obj/machinery/ship_weapon/proc/get_ship(error_log=TRUE)
-	var/area/AR = get_area(src)
-	if(AR && AR.linked_overmap)
-		linked = AR.linked_overmap
+	linked = get_overmap()
+	if(linked)
 		set_position(linked)
-	else if(!AR && error_log)
-		message_admins("Could not get area for [src].")
-	else if(error_log)
-		message_admins("[AR] not linked to an overmap - [src] will not be linked.")
+	else
+		message_admins("[z] not linked to an overmap - [src] will not be linked.")
 
 /**
  * Adds the weapon to the overmap ship's list of weapons of this type
@@ -343,6 +340,34 @@
 		flick("[initial(icon_state)]_unloading",src)
 		state = STATE_LOADED
 
+//Toggle the safety. Mostly used to
+
+/obj/machinery/ship_weapon/proc/toggle_safety()
+	safety = !safety
+	update()
+
+/obj/machinery/ship_weapon/proc/update()
+	if(!safety && chambered)
+		if(src in weapon_type.weapons["loaded"])
+			return
+		LAZYADD(weapon_type.weapons["loaded"] , src)
+	else
+		if(src in weapon_type.weapons["loaded"])
+			LAZYREMOVE(weapon_type.weapons["loaded"] , src)
+
+/obj/machinery/ship_weapon/proc/lazyload()
+	for(var/I = 0; I < max_ammo; I++)
+		var/atom/BB = new ammo_type(src)
+		ammo += BB
+	safety = FALSE
+	chambered = ammo[1]
+	if(chamber_sound) //This got super annoying on gauss guns, so i've made it only work for the initial "ready to fire" warning.
+		playsound(src, chamber_sound, 100, 1)
+	state = STATE_CHAMBERED
+	maint_req = 20
+	malfunction = FALSE
+	update()
+
 /**
  * Chambers the next round in ammo so that we're ready to fire.
  * Rapidfire is used for when you want to reload rapidly. This is done for the railgun autoloader so that you can "volley" shots quickly.
@@ -361,6 +386,7 @@
 		if(chamber_sound && !rapidfire) //This got super annoying on gauss guns, so i've made it only work for the initial "ready to fire" warning.
 			playsound(src, chamber_sound, 100, 1)
 		state = STATE_CHAMBERED
+	update()
 
 /**
  * Unchambers a chambered round.
@@ -406,12 +432,12 @@
  * Returns projectile if successfully fired, FALSE otherwise.
  */
 /obj/machinery/ship_weapon/proc/fire(atom/target, shots = weapon_type.burst_size, manual = TRUE)
+	set waitfor = FALSE //As to not hold up any feedback messages.
 	if(can_fire(shots))
 		if(manual)
 			linked.last_fired = overlay
 
 		for(var/i = 0, i < shots, i++)
-			spawn(0) //Branch so that there isnt a fire delay for the helm.
 			do_animation()
 			state = STATE_FIRING
 
@@ -442,8 +468,9 @@
 		playsound(src, firing_sound, 100, 1)
 	if(bang)
 		for(var/mob/living/M in get_hearers_in_view(10, get_turf(src))) //Burst unprotected eardrums
-			if(M.stat != DEAD && isliving(M)) //Don't make noise if they're dead
-				M.soundbang_act(1,200,10,15)
+			if(M.get_ear_protection() < 1) //checks for protection - why was this not here before???
+				if(M.stat != DEAD && isliving(M)) //Don't make noise if they're dead
+					M.soundbang_act(1,200,10,15)
 
 /**
  * Handles firing animations and sounds on the overmap.
@@ -472,11 +499,13 @@
 			maint_req --
 		else
 			weapon_malfunction()
+	update()
 
 /**
  * Handles firing animation for the mapped weapon.
  */
 /obj/machinery/ship_weapon/proc/do_animation()
+	set waitfor = FALSE
 	flick("[initial(icon_state)]_firing",src)
 	sleep(fire_animation_length)
 	flick("[initial(icon_state)]_unloading",src)

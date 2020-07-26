@@ -66,10 +66,25 @@
 #define ACCESS_HEADS 19 //!Bridge, EVA storage windoors, gateway shutters, AI integrity restorer, clone record deletion, comms console
 #define ACCESS_CAPTAIN 20
 #define ACCESS_ALL_PERSONAL_LOCKERS 21
-
-
-
-
+#define ACCESS_CHAPEL_OFFICE 22
+#define ACCESS_TECH_STORAGE 23
+#define ACCESS_ATMOSPHERICS 24
+#define ACCESS_BAR 25
+#define ACCESS_JANITOR 26
+#define ACCESS_CREMATORIUM 27
+#define ACCESS_KITCHEN 28
+#define ACCESS_ROBOTICS 29
+#define ACCESS_RD 30
+#define ACCESS_CARGO 31
+#define ACCESS_CONSTRUCTION 32
+#define ACCESS_CHEMISTRY 33
+#define ACCESS_BRIGPHYS 34 
+#define ACCESS_HYDROPONICS 35
+#define ACCESS_LIBRARY 37
+#define ACCESS_LAWYER 38
+#define ACCESS_VIROLOGY 39
+#define ACCESS_CMO 40
+#define ACCESS_QM 41
 #define ACCESS_COURT 42
 #define ACCESS_VAULT 53
 #define ACCESS_APOTHECARY 59
@@ -85,6 +100,8 @@
 #define ACCESS_MUNITIONS_STORAGE 71 //NSV13 - Access to ordinance
 #define ACCESS_FIGHTER 72 //NSV13 - Fighternerds
 #define ACCESS_FL 73 //NSV13 - FL tagged decorated fighter
+#define ACCESS_MINING_ENGINEERING 74
+#define ACCESS_MINING_BRIDGE 75
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
