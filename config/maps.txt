@@ -14,18 +14,12 @@ Format:
 map aetherwhisp
 endmap 
 
-map enterprise
-	default
-	voteweight 1.5
-endmap
-
 map tycoon
 	voteweight 1.5
 endmap
 
-map galactica
+map pegasus
 	voteweight 1.5
-
 endmap
 
 map Vago
@@ -43,24 +37,14 @@ endmap
 map jeppison
 endmap
 
-#map aegis
-	voteweight 0.5
-endmap
-
-#map valkyrie
-	disabled
-endmap
-
-#BEGIN DEBUG MAPS
-
-#map testship
-	disabled
-endmap
-
 #map runtimestation
 	disabled
 endmap
 
 #map multiz_debug
 	disabled
+endmap
+
+map Eclipse
+
 endmap

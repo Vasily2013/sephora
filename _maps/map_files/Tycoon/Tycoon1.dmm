@@ -123,12 +123,26 @@
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
 "ar" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 26
+/obj/structure/closet/secure_closet/fighter_pilot,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/hardhat,
+/obj/item/clothing/head/hardhat,
+/obj/item/radio/headset/heads/captain/alt{
+	desc = "A special headset that protects ears from some loud noises.";
+	keyslot = null;
+	name = "noise cancelling headphones"
 	},
-/turf/open/floor/monotile,
+/obj/item/radio/headset/heads/captain/alt{
+	desc = "A special headset that protects ears from some loud noises.";
+	keyslot = null;
+	name = "noise cancelling headphones"
+	},
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/encryptionkey/atc,
+/obj/item/encryptionkey/atc,
+/turf/open/floor/monotile/dark,
 /area/nsv/hanger/deck3{
 	name = "Air traffic control pod"
 	})
@@ -413,11 +427,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
-"bk" = (
-/turf/open/openspace,
-/area/nsv/hanger/deck3{
-	name = "Air traffic control pod"
-	})
 "bl" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -664,15 +673,8 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bR" = (
-/obj/docking_port/stationary/turbolift{
-	dir = 2;
-	id = "turbolift_primary";
-	name = "Flight Deck"
-	},
-/turf/open/openspace,
-/area/nsv/hanger/deck3{
-	name = "Air traffic control pod"
-	})
+/turf/closed/wall/r_wall/ship,
+/area/shuttle/turbolift/shaft)
 "bS" = (
 /obj/machinery/power/deck_relay,
 /obj/structure/cable{
@@ -1906,10 +1908,9 @@
 "eM" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/door/airlock/turbolift/ship,
+/obj/structure/fans/tiny,
 /turf/open/floor/monotile/dark/airless,
-/area/nsv/hanger/deck3{
-	name = "Air traffic control pod"
-	})
+/area/shuttle/turbolift/shaft)
 "eN" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/cable{
@@ -2970,6 +2971,7 @@
 /area/nsv/briefingroom)
 "gK" = (
 /obj/effect/turf_decal/tile/neutral,
+/obj/structure/railing/corner,
 /turf/open/floor/monotile/dark,
 /area/nsv/briefingroom)
 "gL" = (
@@ -3331,10 +3333,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/turbolift_button{
-	pixel_y = 32;
-	shuttle_id = "turbolift_primary"
-	},
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/deck3{
 	name = "Air traffic control pod"
@@ -3580,7 +3578,7 @@
 /turf/open/floor/monotile/dark/airless,
 /area/space/nearstation)
 "id" = (
-/obj/structure/overmap/fighter/light/prebuilt{
+/obj/structure/overmap/fighter/light{
 	angle = 90
 	},
 /turf/open/floor/monotile/dark/airless,
@@ -3596,7 +3594,7 @@
 /turf/open/floor/monotile/dark/airless,
 /area/space/nearstation)
 "ig" = (
-/obj/structure/overmap/fighter/light/prebuilt/flight_leader{
+/obj/structure/overmap/fighter/light/flight_leader{
 	angle = 90
 	},
 /turf/open/floor/monotile/dark/airless,
@@ -3870,19 +3868,11 @@
 /turf/open/floor/monotile,
 /area/crew_quarters/heads/captain)
 "iL" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/monotile/dark,
-/area/nsv/briefingroom)
+/turf/open/openspace,
+/area/shuttle/turbolift/shaft)
 "iM" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/blue,
@@ -4041,10 +4031,10 @@
 	name = "briefing room chair"
 	},
 /obj/effect/landmark/start/chaplain,
+/obj/effect/landmark/observer_start,
 /turf/open/floor/monotile/dark,
 /area/nsv/briefingroom)
 "jb" = (
-/obj/effect/landmark/observer_start,
 /obj/machinery/holopad,
 /obj/structure/chair/comfy/shuttle{
 	dir = 4;
@@ -4746,13 +4736,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
 /turf/open/floor/monotile/dark,
 /area/nsv/briefingroom)
 "km" = (
-/obj/structure/railing{
-	dir = 1;
-	icon_state = "railing0"
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -4921,10 +4910,6 @@
 /turf/open/floor/carpet/ship,
 /area/crew_quarters/heads/captain)
 "kB" = (
-/obj/structure/railing{
-	dir = 1;
-	icon_state = "railing0"
-	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -5374,6 +5359,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/monotile,
 /area/nsv/hanger/deck3{
 	name = "Air traffic control pod"
@@ -6522,6 +6508,14 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/hallway/primary/aft)
+"vO" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 26
+	},
+/turf/closed/wall/r_wall/ship,
+/area/nsv/hanger/deck3{
+	name = "Air traffic control pod"
+	})
 "vQ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6604,6 +6598,36 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat)
+"CJ" = (
+/obj/item/encryptionkey/atc,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/hardhat,
+/obj/item/clothing/head/hardhat,
+/obj/item/radio/headset/heads/captain/alt{
+	desc = "A special headset that protects ears from some loud noises.";
+	keyslot = null;
+	name = "noise cancelling headphones"
+	},
+/obj/item/radio/headset/heads/captain/alt{
+	desc = "A special headset that protects ears from some loud noises.";
+	keyslot = null;
+	name = "noise cancelling headphones"
+	},
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/ears/earmuffs,
+/obj/structure/closet/secure_closet/atc,
+/obj/item/encryptionkey/atc,
+/turf/open/floor/monotile,
+/area/nsv/hanger/deck3{
+	name = "Air traffic control pod"
+	})
+"Dk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/openspace,
+/area/shuttle/turbolift/shaft)
 "EE" = (
 /obj/structure/table/glass,
 /obj/effect/spawner/lootdrop/aimodule_harmless,
@@ -6716,12 +6740,29 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat)
+"Mb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/nsv/hanger/deck3{
+	name = "Air traffic control pod"
+	})
 "Mj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/monotile,
 /area/ai_monitored/turret_protected/ai_upload)
+"Pf" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/openspace,
+/area/shuttle/turbolift/shaft)
 "Qx" = (
 /obj/structure/table,
 /obj/item/stack/packageWrap,
@@ -6863,6 +6904,10 @@
 "Yf" = (
 /turf/closed/wall/r_wall/ship,
 /area/storage/eva)
+"YB" = (
+/obj/machinery/lazylift_button,
+/turf/closed/wall/r_wall/ship,
+/area/shuttle/turbolift/shaft)
 "Zb" = (
 /obj/machinery/computer/teleporter{
 	dir = 1
@@ -36013,7 +36058,7 @@ ac
 af
 Xd
 Xd
-aC
+vO
 aC
 hn
 kR
@@ -36269,8 +36314,8 @@ an
 ac
 af
 aC
-aC
-aC
+ar
+ar
 ar
 lu
 li
@@ -36526,7 +36571,7 @@ an
 ac
 af
 hn
-as
+Mb
 as
 bU
 as
@@ -37808,14 +37853,14 @@ ad
 ad
 ac
 ao
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
 hm
 hz
 hz
@@ -38065,14 +38110,14 @@ ac
 ac
 ac
 aq
-aC
-bk
-bk
-bk
-bk
-bk
-bk
-aC
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
 hr
 ax
 ax
@@ -38322,11 +38367,11 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
-aJ
+Dk
 aJ
 aJ
 eM
@@ -38579,8 +38624,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -38836,8 +38881,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -39093,8 +39138,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -39350,8 +39395,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -39607,8 +39652,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -39864,9 +39909,9 @@ ac
 ac
 ac
 aq
-aC
 bR
-aJ
+bR
+iL
 aJ
 aJ
 aJ
@@ -40121,8 +40166,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -40378,8 +40423,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -40635,8 +40680,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -40892,8 +40937,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -41149,8 +41194,8 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
 aJ
@@ -41406,11 +41451,11 @@ ac
 ac
 ac
 ao
-aC
-bk
+bR
+bR
 aJ
 aJ
-aJ
+Pf
 aJ
 aJ
 eM
@@ -41663,14 +41708,14 @@ ac
 ac
 ac
 aq
-aC
-bk
-bk
-bk
-bk
-bk
-bk
-aC
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+YB
 ht
 ax
 ax
@@ -41920,14 +41965,14 @@ ac
 ac
 ac
 ao
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
 hu
 hz
 hz
@@ -43470,7 +43515,7 @@ ax
 ij
 hn
 hB
-hC
+CJ
 hF
 hH
 hn
@@ -44498,7 +44543,7 @@ ax
 ij
 hn
 hB
-hC
+CJ
 lj
 hH
 hn
@@ -45300,8 +45345,8 @@ eE
 fF
 gK
 qq
-iL
-iL
+qq
+qq
 kl
 kQ
 eE
