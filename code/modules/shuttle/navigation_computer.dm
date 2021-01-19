@@ -2,6 +2,7 @@
 	name = "navigation computer"
 	desc = "Used to designate a precise transit location for a spacecraft."
 	jump_action = null
+	should_supress_view_changes  = FALSE
 	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
 	var/datum/action/innate/shuttledocker_place/place_action = new
 	var/shuttleId = ""
@@ -10,8 +11,8 @@
 	var/list/jumpto_ports = list() //hashset of ports to jump to and ignore for collision purposes
 	var/obj/docking_port/stationary/my_port //the custom docking port placed by this console
 	var/obj/docking_port/mobile/shuttle_port //the mobile docking port of the connected shuttle
-	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM, ZTRAIT_AWAY, ZTRAIT_REEBE) //traits forbided for custom docking
-	var/view_range = 7
+	var/list/locked_traits = list(ZTRAIT_RESERVED, ZTRAIT_CENTCOM, ZTRAIT_AWAY) //traits forbided for custom docking
+	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
 	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating, /turf/open/lava)
@@ -94,7 +95,7 @@
 			to_add += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images += to_add
-		user.client.change_view(view_range)
+		user.client.view_size.setTo(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	..()
@@ -107,7 +108,7 @@
 			to_remove += SSshuttle.hidden_shuttle_turf_images
 
 		user.client.images -= to_remove
-		user.client.check_view()
+		user.client.view_size.resetToDefault()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()
 	if(designating_target_loc || !current_user)
@@ -134,6 +135,13 @@
 			if(SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT)
 				to_chat(current_user, "<span class='warning'>Unknown object detected in landing zone. Please designate another location.</span>")
 		return
+
+	///Make one use port that deleted after fly off, to don't lose info that need on to properly fly off.
+	if(my_port && my_port.get_docked())
+		my_port.delete_after = TRUE
+		my_port.id = null
+		my_port.name = "Old [my_port.name]"
+		my_port = null
 
 	if(!my_port)
 		my_port = new()
@@ -345,7 +353,7 @@
 		else
 			L["([L.len]) [nav_beacon.name] locked"] = null
 
-	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, 0)
+	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
 	var/selected = input("Choose location to jump to", "Locations", null) as null|anything in L
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
 		return

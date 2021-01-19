@@ -4,20 +4,27 @@
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
+		//Debug/Special Maps
 		#include "map_files\Mining\Lavaland.dmm"
 		#include "map_files\debug\runtimestation.dmm"
-		#include "map_files\Aegis\aegis1.dmm"
-		#include "map_files\Aegis\aegis2.dmm"
-		#include "map_files\Aegis\aegis3.dmm"
-		#include "map_files\Aegis\ao1.dmm"
-		#include "map_files\Aegis\ao2.dmm"
-		#include "map_files\Aegis\ao3.dmm"
-		#include "map_files\Valkyrie\valkyrie1.dmm"
-		#include "map_files\Valkyrie\valkyrie2.dmm"
-		#include "map_files\Valkyrie\valkyrie3.dmm"
-		#include "map_files\Hammerhead\Hammerhead.dmm"
 
-		#ifdef TRAVISBUILDING
+		//Aetherwhisp
+		#include "map_files\Aetherwhisp\Aetherwhisp2.dmm"
+		#include "map_files\Aetherwhisp\Aetherwhisp1.dmm"
+
+		//Gladius
+		#include "map_files\Gladius\Gladius1.dmm"
+		#include "map_files\Gladius\Gladius2.dmm"
+
+		//Tycoon
+		#include "map_files\Tycoon\Tycoon1.dmm"
+		#include "map_files\Tycoon\Tycoon2.dmm"
+
+		//Jeppison
+		#include "map_files\Jeppison\Jeppison1.dmm"
+		#include "map_files\Jeppison\Jeppison2.dmm"
+
+		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
 	#endif

@@ -1,6 +1,5 @@
 /*
 	MouseDrop:
-
 	Called on the atom you're dragging.  In a lot of circumstances we want to use the
 	receiving object instead, so that's the default action.  This allows you to drag
 	almost anything into a trash can.
@@ -26,7 +25,7 @@
 
 /client
 	var/list/atom/selected_target[2]
-	var/obj/item/active_mousedown_item = null
+	var/obj/active_mousedown_item = null //NSV13 - changed from obj/item to obj
 	var/mouseParams = ""
 	var/mouseLocation = null
 	var/mouseObject = null
@@ -34,26 +33,36 @@
 	var/middragtime = 0
 	var/atom/middragatom
 
+//Nsv13 - This proc has been extensively changed to handle auto-firing in a slightly more sane way which shouldn't cause people to get kicked by the anti-spam defenses...
+
 /client/MouseDown(object, location, control, params)
 	if (mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
-	var/delay = mob.CanMobAutoclick(object, location, params)
-	if(delay)
-		selected_target[1] = object
-		selected_target[2] = params
-		while(selected_target[1])
-			Click(selected_target[1], location, control, selected_target[2])
-			sleep(delay)
 	active_mousedown_item = mob.canMobMousedown(object, location, params)
 	if(active_mousedown_item)
-		active_mousedown_item.onMouseDown(object, location, params, mob)
+		//NSV13 type conversion before mousedown - formerly active_mousedown_item.onMouseDown(object, location, params, mob)
+		if(istype(active_mousedown_item, /obj/item))
+			var/obj/item/I = active_mousedown_item
+			I.onMouseDown(object, location, params, mob)
+		else if(istype(active_mousedown_item, /obj/structure/overmap))
+			var/obj/structure/overmap/OM = active_mousedown_item
+			OM.onMouseDown(object, location, params, mob)
+		//NSV13 end
+
 
 /client/MouseUp(object, location, control, params)
 	if (mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
 	selected_target[1] = null
 	if(active_mousedown_item)
-		active_mousedown_item.onMouseUp(object, location, params, mob)
+		//NSV13 type conversion before mouseup - formerly active_mousedown_item.onMouseUp(object, location, params, mob)
+		if(istype(active_mousedown_item, /obj/item))
+			var/obj/item/I = active_mousedown_item
+			I.onMouseUp(object, location, params, mob)
+		else if(istype(active_mousedown_item, /obj/structure/overmap))
+			var/obj/structure/overmap/OM = active_mousedown_item
+			OM.onMouseUp(object, location, params, mob)
+		//NSV13 end
 		active_mousedown_item = null
 
 /mob/proc/CanMobAutoclick(object, location, params)
@@ -67,10 +76,12 @@
 
 /mob/proc/canMobMousedown(atom/object, location, params)
 
-/mob/living/carbon/canMobMousedown(atom/object, location, params)
+/mob/living/canMobMousedown(atom/object, location, params) //NSV13 - allow non-carbons to do this too
 	var/obj/item/H = get_active_held_item()
 	if(H)
 		. = H.canItemMouseDown(object, location, params)
+	else if(src.overmap_ship && (src.overmap_ship.gunner == src) || (GetComponent(/datum/component/overmap_gunning))) //NSV13 - let us mouse-down if we're a gunner
+		. = src.overmap_ship
 
 /obj/item/proc/CanItemAutoclick(object, location, params)
 
@@ -116,6 +127,9 @@
 /datum/proc/onMouseMove(object, location, control, params)
 	return
 
+/datum/proc/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
+	return
+
 /client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
 	var/list/L = params2list(params)
 	if (L["middle"])
@@ -133,11 +147,9 @@
 		selected_target[1] = over_object
 		selected_target[2] = params
 	if(active_mousedown_item)
+		//NSV13 type conversion before mouseup - formerly active_mousedown_item.onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
 		active_mousedown_item.onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
-
-
-/obj/item/proc/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
-	return
+		//NSV13 end
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
 	if (middragatom == src_object)

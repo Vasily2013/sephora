@@ -8,11 +8,12 @@
 	spawn_positions = 4
 	supervisors = "the quartermaster and the Executive Officer"
 	selection_color = "#dcba97"
+	chat_color = "#CE957E"
 
 	outfit = /datum/outfit/job/miner
 
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_MINING_ENGINEERING, ACCESS_MINING_BRIDGE) //Todo: Split off mining into engineer, tech, bridge staff etc.
+	minimal_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MINING_ENGINEERING, ACCESS_MINING_BRIDGE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_CAR
 
@@ -26,7 +27,7 @@
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black
-	uniform = /obj/item/clothing/under/rank/miner/lavaland
+	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/storage/bag/ore	//causes issues if spawned in backpack
 	backpack_contents = list(

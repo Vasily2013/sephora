@@ -112,7 +112,7 @@
 	icon_state = "tile-carpet-black"
 	item_state = "tile-carpet-black"
 	turf_type = /turf/open/floor/carpet/black
-	
+
 	tableVariant = /obj/structure/table/wood/fancy/black
 
 /obj/item/stack/tile/carpet/blue
@@ -171,9 +171,16 @@
 	turf_type = /turf/open/floor/carpet/royalblue
 	tableVariant = /obj/structure/table/wood/fancy/royalblue
 
+/obj/item/stack/tile/eighties
+	name = "retro tile"
+	singular_name = "retro floor tile"
+	desc = "A stack of floor tiles that remind you of simpler times.."
+	icon_state = "tile_eighties"
+	turf_type = /turf/open/floor/eighties
+
 /obj/item/stack/tile/carpet/fifty
 	amount = 50
-	
+
 /obj/item/stack/tile/carpet/black/fifty
 	amount = 50
 
@@ -199,6 +206,9 @@
 	amount = 50
 
 /obj/item/stack/tile/carpet/royalblue/fifty
+	amount = 50
+
+/obj/item/stack/tile/eighties/fifty
 	amount = 50
 
 /obj/item/stack/tile/fakespace
@@ -252,7 +262,7 @@
 	icon_state = "tile_noslip_white"
 	turf_type = /turf/open/floor/noslip/white
 	merge_type = /obj/item/stack/tile/noslip
-	
+
 /obj/item/stack/tile/noslip/blue
 	name = "high-traction floor tile"
 	singular_name = "high-traction floor tile"
@@ -268,7 +278,7 @@
 	icon_state = "tile_noslip_darkblue"
 	turf_type = /turf/open/floor/noslip/darkblue
 	merge_type = /obj/item/stack/tile/noslip
-	
+
 /obj/item/stack/tile/noslip/dark
 	name = "high-traction floor tile"
 	singular_name = "high-traction floor tile"
@@ -364,9 +374,10 @@
 	is_cyborg = 1
 	cost = 125
 //Monotiles
-/obj/item/stack/tile/mono
+/obj/item/stack/tile/mono/steel //NSV13 Start
 	name = "steel mono tile"
 	singular_name = "steel mono tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile
@@ -374,6 +385,7 @@
 /obj/item/stack/tile/mono/dark
 	name = "dark mono tile"
 	singular_name = "dark mono tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile/dark
@@ -381,6 +393,7 @@
 /obj/item/stack/tile/mono/light
 	name = "light mono tile"
 	singular_name = "light mono tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile/light
@@ -389,6 +402,7 @@
 /obj/item/stack/tile/grid
 	name = "grey grid tile"
 	singular_name = "grey grid tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile_grid"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/grid
@@ -396,6 +410,7 @@
 /obj/item/stack/tile/ridge
 	name = "grey ridge tile"
 	singular_name = "grey ridge tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile_ridged"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/ridged
@@ -404,6 +419,7 @@
 /obj/item/stack/tile/techgrey
 	name = "grey techfloor tile"
 	singular_name = "grey techfloor tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile_tech_grey"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech
@@ -411,6 +427,7 @@
 /obj/item/stack/tile/techgrid
 	name = "grid techfloor tile"
 	singular_name = "grid techfloor tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile_tech_grid"
 	materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech/grid
@@ -418,6 +435,7 @@
 /obj/item/stack/tile/techmaint
 	name = "dark techfloor tile"
 	singular_name = "dark techfloor tile"
+	desc = "A solid, heavy set of flooring plates."
 	icon_state = "tile_tech_maint"
 	materials = list(/datum/material/iron=500)
-	turf_type = /turf/open/floor/plasteel/techmaint
+	turf_type = /turf/open/floor/plasteel/techmaint //NSV13 End

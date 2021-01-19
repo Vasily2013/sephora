@@ -16,6 +16,7 @@
 
 	var/port_x_offset
 	var/port_y_offset
+	var/extra_desc = ""
 
 /datum/map_template/shuttle/proc/prerequisites_met()
 	return TRUE
@@ -108,6 +109,7 @@
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
 	name = "Base Shuttle Template (Cargo)"
+	can_be_bought = FALSE
 
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
@@ -122,10 +124,6 @@
 
 /datum/map_template/shuttle/mining
 	port_id = "mining"
-	can_be_bought = FALSE
-
-/datum/map_template/shuttle/cargo
-	port_id = "cargo"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/arrival
@@ -152,6 +150,10 @@
 	port_id = "pirate"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/hunter
+	port_id = "hunter"
+	can_be_bought = FALSE
+
 /datum/map_template/shuttle/ruin //For random shuttles in ruins
 	port_id = "ruin"
 	can_be_bought = FALSE
@@ -170,7 +172,7 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build your own shuttle kit"
-	description = "Save money by building your own shuttle! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
 	admin_notes = "No brig, no medical facilities, no shuttle console."
 	credit_cost = -2500
 
@@ -225,6 +227,7 @@
 	suffix = "luxury"
 	name = "Luxury Shuttle"
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
 	credit_cost = 10000
 
@@ -252,6 +255,12 @@
 	name = "Birdboat Station Emergency Shuttle"
 	description = "Though a little on the small side, this shuttle is feature complete, which is more than can be said for the pattern of station it was commissioned for."
 	credit_cost = 1000
+
+/datum/map_template/shuttle/emergency/shelter
+	suffix = "shelter"
+	name = "BSP Collapsable Emergency Shuttle"
+	description = "A new product by a Nanotrasen subsidary, designed to be quick to construct and employ, with the amenities of a small emergency shuttle, including sleepers. Luckily, the shuttle is indeed deployed faster. Un-luckily, that time is supplemented by construction time, so it won't make the transit any faster."
+	credit_cost = 2500
 
 /datum/map_template/shuttle/emergency/box
 	suffix = "box"
@@ -478,7 +487,7 @@
 	if(SHUTTLE_UNLOCK_ALIENTECH in SSshuttle.shuttle_purchase_requirements_met)
 		return TRUE
 	return FALSE
-	
+
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
 	name = "arrival shuttle (Box)"
@@ -571,6 +580,18 @@
 	suffix = "default"
 	name = "pirate ship (Default)"
 
+/datum/map_template/shuttle/hunter/space_cop
+	suffix = "space_cop"
+	name = "Police Spacevan"
+
+/datum/map_template/shuttle/hunter/russian
+	suffix = "russian"
+	name = "Russian Cargo Ship"
+
+/datum/map_template/shuttle/hunter/bounty
+	suffix = "bounty"
+	name = "Bounty Hunter Ship"
+
 /datum/map_template/shuttle/ruin/caravan_victim
 	suffix = "caravan_victim"
 	name = "Small Freighter"
@@ -596,9 +617,16 @@
 	name = "Snowdin Excavation Elevator"
 
  // Turbolifts
-/datum/map_template/shuttle/turbolift/debug/primary
+/datum/map_template/shuttle/turbolift
 	prefix = "_maps/shuttles/turbolifts/"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/turbolift/debug/primary
 	port_id = "debug"
 	suffix = "primary"
 	name = "primary turbolift (multi-z debug)"
-	can_be_bought = FALSE
+
+/datum/map_template/shuttle/turbolift/semmes/aircraft
+	port_id = "aircraft"
+	suffix = "semmes"
+	name = "Aircraft elevator (NSV Semmes)"

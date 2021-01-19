@@ -43,9 +43,10 @@ Detective=CPL
 Security Officer=LCPL
 Brig Physician=CRW
 
-CAG=SGT
+Flight Leader=SGT
 Air Traffic Controller=SGT
 Munitions Technician=SPC
+Deck Technician=SPC
 Fighter Pilot=CPL
 
 AI=CPU

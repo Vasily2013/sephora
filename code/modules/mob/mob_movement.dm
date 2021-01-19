@@ -137,7 +137,7 @@
 	else
 		move_delay = world.time
 
-	if(L.confused)
+	if(L.confused && L.m_intent == MOVE_INTENT_RUN && !HAS_TRAIT(L, TRAIT_CONFUSEIMMUNE))
 		var/newdir = 0
 		if(L.confused > 40)
 			newdir = pick(GLOB.alldirs)
@@ -177,6 +177,9 @@
 		else if(mob.restrained(ignore_grab = 1))
 			move_delay = world.time + 10
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
+			return TRUE
+		else if(mob.pulledby.grab_state == GRAB_AGGRESSIVE)
+			move_delay = world.time + 10
 			return TRUE
 		else
 			return mob.resist_grab(1)
@@ -459,7 +462,7 @@
 		m_intent = MOVE_INTENT_RUN
 	if(hud_used && hud_used.static_inventory)
 		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_icon(src)
+			selector.update_icon()
 
 ///Moves a mob upwards in z level
 /mob/verb/up()
@@ -470,8 +473,9 @@
 		var/mob/living/silicon/ai/AI = src
 		if(AI.eyeobj)
 			var/turf/T = SSmapping.get_turf_above(get_turf(AI.eyeobj))
-			var/area/X = get_area(T) //Check theyre ON THE STATION and not trying to move down into the overmap
-			if(T && !istype(X, /area/space) && !istype(T, /turf/open/space/basic))
+			if(AI.overmap_ship) //So that they don't get an overmap camera on the ship Z-level.
+				return FALSE
+			if(T && is_station_level(T.z))//Multiz AI viewing of boardable ship is not currently supported.
 				AI.eyeobj.forceMove(T)
 			else
 				to_chat(AI, "<span class='warning'>You cannot move here</span>")
@@ -488,8 +492,9 @@
 		var/mob/living/silicon/ai/AI = src
 		if(AI.eyeobj)
 			var/turf/T = SSmapping.get_turf_below(get_turf(AI.eyeobj))
-			var/area/X = get_area(T) //Check theyre ON THE STATION and not trying to move down into the overmap
-			if(T && !istype(X, /area/space) && !istype(T, /turf/open/space/basic))
+			if(AI.overmap_ship) //So that they don't get an overmap camera on the ship Z-level.
+				return FALSE
+			if(T && is_station_level(T.z))//Multiz AI viewing of boardable ship is not currently supported.
 				AI.eyeobj.forceMove(T)
 			else
 				to_chat(AI, "<span class='warning'>You cannot move here</span>")

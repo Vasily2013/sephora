@@ -120,7 +120,7 @@
 					S.use(2)
 					to_chat(user, "<span class='notice'>You add the plating.</span>")
 					var/turf/T = get_turf(src)
-					T.PlaceOnTop(/turf/closed/wall)
+					T.PlaceOnTop(/turf/closed/wall/steel) //Nsv13 - Bay style walls
 					transfer_fingerprints_to(T)
 					qdel(src)
 				return
@@ -304,13 +304,6 @@
 		new remains(loc)
 	qdel(src)
 
-/obj/structure/girder/ratvar_act()
-	if(anchored)
-		new /obj/structure/destructible/clockwork/wall_gear(loc)
-	else
-		new /obj/structure/destructible/clockwork/wall_gear/displaced(loc)
-	qdel(src)
-
 /obj/structure/girder/narsie_act()
 	new /obj/structure/girder/cult(loc)
 	qdel(src)
@@ -405,7 +398,7 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, "<span class='notice'>You finish a wall.</span>")
-			T.PlaceOnTop(/turf/closed/wall)
+			T.PlaceOnTop(/turf/closed/wall/ship) //NSV13 - Ship wall construction
 			qdel(src)
 			return TRUE
 		if(RCD_DECONSTRUCT)

@@ -17,6 +17,9 @@
 	var/grille_type = null
 	var/broken_type = /obj/structure/grille/broken
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	FASTDMM_PROP(\
+		pipe_astar_cost = 1\
+	)
 
 /obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -49,7 +52,7 @@
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
 		if(RCD_WINDOWGRILLE)
-			if(the_rcd.window_type == /obj/structure/window/reinforced/fulltile)
+			if(the_rcd.window_type == /obj/structure/window/reinforced/fulltile/ship/interior) //NSV13
 				return list("mode" = RCD_WINDOWGRILLE, "delay" = 40, "cost" = 12)
 			else
 				return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
@@ -85,7 +88,9 @@
 
 /obj/structure/grille/attack_animal(mob/user)
 	. = ..()
-	if(!shock(user, 70))
+	if(!.)
+		return
+	if(!shock(user, 70) && !QDELETED(src)) //Last hit still shocks but shouldn't deal damage to the grille
 		take_damage(rand(5,10), BRUTE, "melee", 1)
 
 /obj/structure/grille/attack_paw(mob/user)
@@ -184,11 +189,13 @@
 				else if(istype(W, /obj/item/stack/sheet/plasmaglass))
 					WD = new/obj/structure/window/plasma/fulltile(drop_location()) //plasma window
 				else if(istype(W, /obj/item/stack/sheet/rglass))
-					WD = new/obj/structure/window/reinforced/fulltile(drop_location()) //reinforced window
+					WD = new/obj/structure/window/reinforced/fulltile/ship/interior(drop_location()) //NSV13 - reinforced window
 				else if(istype(W, /obj/item/stack/sheet/titaniumglass))
 					WD = new/obj/structure/window/shuttle(drop_location())
 				else if(istype(W, /obj/item/stack/sheet/plastitaniumglass))
 					WD = new/obj/structure/window/plastitanium(drop_location())
+				else if(istype(W, /obj/item/stack/sheet/nanocarbon_glass)) //NSV13
+					WD = new/obj/structure/window/reinforced/fulltile/ship(drop_location()) //NSV13
 				else
 					WD = new/obj/structure/window/fulltile(drop_location()) //normal window
 				WD.setDir(dir_to_set)
@@ -283,40 +290,4 @@
 	rods_amount = 1
 	rods_broken = FALSE
 	grille_type = /obj/structure/grille
-	broken_type = null
-
-
-/obj/structure/grille/ratvar
-	icon_state = "ratvargrille"
-	name = "cog grille"
-	desc = "A strangely-shaped grille."
-	broken_type = /obj/structure/grille/ratvar/broken
-
-/obj/structure/grille/ratvar/Initialize()
-	. = ..()
-	if(broken)
-		new /obj/effect/temp_visual/ratvar/grille/broken(get_turf(src))
-	else
-		new /obj/effect/temp_visual/ratvar/grille(get_turf(src))
-		new /obj/effect/temp_visual/ratvar/beam/grille(get_turf(src))
-
-/obj/structure/grille/ratvar/narsie_act()
-	take_damage(rand(1, 3), BRUTE)
-	if(src)
-		var/previouscolor = color
-		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
-
-/obj/structure/grille/ratvar/ratvar_act()
-	return
-
-/obj/structure/grille/ratvar/broken
-	icon_state = "brokenratvargrille"
-	density = FALSE
-	obj_integrity = 20
-	broken = TRUE
-	rods_amount = 1
-	rods_broken = FALSE
-	grille_type = /obj/structure/grille/ratvar
 	broken_type = null

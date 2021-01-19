@@ -10,11 +10,12 @@
 #define CHANNEL_SHIP_ALERT 1016 //nsv13 - sound channel for looping ship alerts, EG general quarters
 #define CHANNEL_REACTOR_ALERT 1015 //nsv13 - sound channel for the nuclear storm drive meltdown sfx.
 #define CHANNEL_SHIP_FX 1014 //nsv13 - sound channel for general ship ambience / FX
+#define CHANNEL_IMPORTANT_SHIP_ALERT 1013 //nsv13 - sound channel for really REALLY IMPORTANT ship
 
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1013
+#define CHANNEL_HIGHEST_AVAILABLE 1012 //Nsv13 - ADDED LOADS OF SOUND CHANNELS. KEEP THIS UP TO DATE
 
 
 #define SOUND_MINIMUM_PRESSURE 10
@@ -67,8 +68,6 @@
 									'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambiodd.ogg')
 
 #define REEBE list('sound/ambience/ambireebe1.ogg', 'sound/ambience/ambireebe2.ogg', 'sound/ambience/ambireebe3.ogg')
-
-
 
 #define CREEPY_SOUNDS list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/heart_beat.ogg', 'sound/effects/screech.ogg',\
 	'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\

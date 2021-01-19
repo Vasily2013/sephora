@@ -57,7 +57,7 @@
 	var/success = FALSE
 
 	if(target.mind && target.client && target.stat != DEAD)
-		if(!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield)
+		if((!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield) && !istype(target.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
 			if(HAS_TRAIT(target, TRAIT_MINDSHIELD) && ignore_mindshield)
 				to_chat(user, "<span class='notice'>We bruteforce our way past the mental barriers of [target.name] and begin linking our minds!</span>")
 			else
@@ -298,7 +298,7 @@
 	var/list/carbon_members = hive.get_carbon_members()
 	if(!carbon_members.len)
 		return
-	if(!user.getBruteLoss() && !user.getFireLoss() && !user.getCloneLoss() && !user.getBrainLoss())
+	if(!user.getBruteLoss() && !user.getFireLoss() && !user.getCloneLoss() && !user.getOrganLoss(ORGAN_SLOT_BRAIN))
 		to_chat(user, "<span class='notice'>We cannot heal ourselves any more with this power!</span>")
 		revert_cast()
 	to_chat(user, "<span class='notice'>We begin siphoning power from our many vessels!</span>")
@@ -310,7 +310,7 @@
 		if(!target)
 			to_chat(user, "<span class='warning'>We have run out of vessels to drain.</span>")
 			break
-		target.adjustBrainLoss(5)
+		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 		if(user.getBruteLoss() > user.getFireLoss())
 			user.heal_ordered_damage(5, list(CLONE, BRUTE, BURN))
 		else
@@ -319,7 +319,7 @@
 			to_chat(user, "<span class='warning'>We finish our healing</span>")
 			break
 		iterations++
-	user.setBrainLoss(0)
+	user.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 
 
 /mob/living/passenger
@@ -451,13 +451,13 @@
 /obj/effect/proc_holder/spell/target_hive/hive_control/process()
 	if(active)
 		if(QDELETED(vessel)) //If we've been gibbed or otherwise deleted, ghost both of them and kill the original
-			original_body.adjustBrainLoss(200)
+			original_body.adjustOrganLoss(ORGAN_SLOT_BRAIN, 200)
 			release_control()
 		else if(!is_hivemember(backseat)) //If the vessel is no longer a hive member, return to original bodies
 			to_chat(vessel, "<span class='warning'>Our vessel is one of us no more!</span>")
 			release_control()
 		else if(!QDELETED(original_body) && (!backseat.ckey || vessel.stat == DEAD)) //If the original body exists and the vessel is dead/ghosted, return both to body but not before killing the original
-			original_body.adjustBrainLoss(200)
+			original_body.adjustOrganLoss(ORGAN_SLOT_BRAIN, 200)
 			to_chat(vessel.mind, "<span class='warning'>Our vessel is one of us no more!</span>")
 			release_control()
 		else if(!QDELETED(original_body) && original_body.z != vessel.z) //Return to original bodies
@@ -938,6 +938,7 @@
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='assimilator'>There is no you...</span>"), 110)
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='bigassimilator'>...there is only us.</span>"), 130)
 		addtimer(CALLBACK(C, /mob/living/proc/hive_awaken, new_objective, one_mind_team), 150)
+		log_objective(M, new_objective.explanation_text)
 
 /obj/effect/proc_holder/spell/self/hive_comms
 	name = "Hive Communication"

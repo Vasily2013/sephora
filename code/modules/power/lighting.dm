@@ -12,6 +12,10 @@
 #define BROKEN_SPARKS_MIN (30 SECONDS)
 #define BROKEN_SPARKS_MAX (90 SECONDS)
 
+//NSV13 added ethereal light interaction defines
+#define LIGHT_DRAIN_TIME 25
+#define LIGHT_POWER_GAIN 35
+
 /obj/item/wallframe/light_fixture
 	name = "light fixture frame"
 	desc = "Used for building lights."
@@ -207,13 +211,13 @@
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = FALSE
 	var/static_power_used = 0
-	var/brightness = 8			// luminosity when on, also used in power calculation
+	var/brightness = 10			// luminosity when on, also used in power calculation
 	var/bulb_power = 1			// basically the alpha of the emitted light source
-	var/bulb_colour = "#FFCE99"	// qwerty's new more cozy color of light
+	var/bulb_colour = "#FFF6ED"	// befault colour of the light.
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light/tube		// the type of light item
@@ -228,8 +232,8 @@
 
 	var/nightshift_enabled = FALSE	//Currently in night shift mode?
 	var/nightshift_allowed = TRUE	//Set to FALSE to never let this light get switched to night mode.
-	var/nightshift_brightness = 8
-	var/nightshift_light_power = 0.45
+	var/nightshift_brightness = 7
+	var/nightshift_light_power = 0.75
 	var/nightshift_light_color = "#FFDBB5" //qwerty's more cozy light
 
 	var/emergency_mode = FALSE	// if true, the light is in emergency mode
@@ -238,6 +242,9 @@
 	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
+
+	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
+	var/bulb_vacuum_brightness = 8
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -249,7 +256,7 @@
 	icon_state = "bulb"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness = 4
+	brightness = 6
 	desc = "A small lighting fixture."
 	bulb_colour = "#FFE6CC" //little less cozy, bit more industrial, but still cozy.. -qwerty
 	light_type = /obj/item/light/bulb
@@ -287,8 +294,21 @@
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
 
+	//Setup area colours -pb
+	var/area/A = get_area(src)
+	if(bulb_colour == initial(bulb_colour))
+		if(istype(src, /obj/machinery/light/small))
+			bulb_colour = A.lighting_colour_bulb
+			brightness = A.lighting_brightness_bulb
+		else
+			bulb_colour = A.lighting_colour_tube
+			brightness = A.lighting_brightness_bulb
+
+	if(nightshift_light_color == initial(nightshift_light_color))
+		nightshift_light_color = A.lighting_colour_night
+		nightshift_brightness = A.lighting_brightness_night
+
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
 
@@ -297,11 +317,11 @@
 	spawn(2)
 		switch(fitting)
 			if("tube")
-				brightness = 8
+				brightness = 11
 				if(prob(2))
 					break_light_tube(1)
 			if("bulb")
-				brightness = 4
+				brightness = 6
 				if(prob(5))
 					break_light_tube(1)
 		spawn(1)
@@ -320,8 +340,10 @@
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire) || (A && A.redalert)) //NSV13 - general quarters
+			if(emergency_mode || (A?.fire) || (A && A.redalert)) //NSV13 - general quarters
 				icon_state = "[base_state]_emergency"
+			else if (A?.vacuum)
+				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
 				if(on)
@@ -346,9 +368,14 @@
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
+		if(color)
+			CO = color
 		var/area/A = get_area(src)
 		if (A?.fire || A?.redalert) //Nsv13 - general quarters
 			CO = bulb_emergency_colour
+		else if (A?.vacuum)
+			CO = bulb_vacuum_colour
+			BR = bulb_vacuum_brightness
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power
@@ -374,14 +401,14 @@
 		set_light(0)
 	update_icon()
 
-	active_power_usage = (brightness * 10)
+	active_power_usage = (brightness * 7.2)
 	if(on != on_gs)
 		on_gs = on
 		if(on)
 			static_power_used = brightness * 20 //20W per unit luminosity
-			addStaticPower(static_power_used, STATIC_LIGHT)
+			addStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 		else
-			removeStaticPower(static_power_used, STATIC_LIGHT)
+			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
 
@@ -390,7 +417,7 @@
 	update()
 
 /obj/machinery/light/proc/broken_sparks(start_only=FALSE)
-	if(status == LIGHT_BROKEN && has_power())
+	if(!QDELETED(src) && status == LIGHT_BROKEN && has_power())
 		if(!start_only)
 			do_sparks(3, TRUE, src)
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
@@ -611,6 +638,7 @@
 	update(FALSE)
 	return
 
+//NSV13 added ethereal light interaction defines
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 
@@ -633,11 +661,19 @@
 		if(istype(H))
 			var/datum/species/ethereal/eth_species = H.dna?.species
 			if(istype(eth_species))
-				to_chat(H, "<span class='notice'>You start channeling some power through the [fitting] into your body.</span>")
-				if(do_after(user, 50, target = src))
-					to_chat(H, "<span class='notice'>You receive some charge from the [fitting].</span>")
-					eth_species.adjust_charge(5)
+				var/datum/species/ethereal/E = H.dna.species
+				if(E.drain_time > world.time)
 					return
+				to_chat(H, "<span class='notice'>You start channeling some power through the [fitting] into your body.</span>")
+				while(do_after(user, LIGHT_DRAIN_TIME, target = src))
+					E.drain_time = world.time + LIGHT_DRAIN_TIME
+					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+					if(istype(stomach))
+						to_chat(H, "<span class='notice'>You receive some charge from the [fitting].</span>")
+						stomach.adjust_charge(LIGHT_POWER_GAIN)
+						use_power(LIGHT_POWER_GAIN)
+					else
+						to_chat(H, "<span class='warning'>You fail to receive charge from the [fitting]!</span>")
 				return
 
 			if(H.gloves)
@@ -778,7 +814,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	brightness = 8
+	brightness = 11
 
 /obj/item/light/tube/broken
 	status = LIGHT_BROKEN
@@ -791,7 +827,7 @@
 	item_state = "contvapour"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	brightness = 4
+	brightness = 6
 
 /obj/item/light/bulb/broken
 	status = LIGHT_BROKEN
@@ -874,7 +910,10 @@
 	icon = 'icons/obj/lighting.dmi'
 	base_state = "floor"		// base description and icon_state
 	icon_state = "floor"
-	brightness = 4
+	brightness = 6
 	layer = 2.5
 	light_type = /obj/item/light/bulb
 	fitting = "bulb"
+
+#undef LIGHT_DRAIN_TIME
+#undef LIGHT_POWER_GAIN

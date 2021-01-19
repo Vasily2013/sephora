@@ -4,6 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	desc = "Make dark."
+	power_channel = AREA_USAGE_LIGHT
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
 	var/area/area = null
@@ -48,7 +49,7 @@
 
 /obj/machinery/light_switch/power_change()
 	if(area == get_area(src))
-		if(powered(LIGHT))
+		if(powered(AREA_USAGE_LIGHT))
 			stat &= ~NOPOWER
 		else
 			stat |= NOPOWER
@@ -61,3 +62,15 @@
 		return
 	if(!(stat & (BROKEN|NOPOWER)))
 		power_change()
+
+/obj/machinery/light_switch/north //NSV13 Start
+	pixel_y = 24
+
+/obj/machinery/light_switch/south
+	pixel_y = -24
+
+/obj/machinery/light_switch/east
+	pixel_x = 24
+
+/obj/machinery/light_switch/west
+	pixel_x = -24 //NSV13 End

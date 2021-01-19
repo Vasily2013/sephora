@@ -48,6 +48,11 @@
 
 	if(!new_name)
 		return
+
+	if(CHAT_FILTER_CHECK(new_name))
+		to_chat(user, "<span class='warning'>Your name has been automatically denied. It contains prohibited words.</span>")
+		return
+
 	log_game("[key_name(user)] has proposed to name the station as \
 		[new_name]")
 
@@ -79,7 +84,7 @@
 
 /obj/item/station_charter/proc/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)
-	minor_announce("[ureal_name] has designated your station as [station_name()]", "Captain's Charter", 0)
+	minor_announce("[ureal_name] has designated your ship as [station_name()]", "Captain's Charter", 0) //NSV13
 	log_game("[ukey] has renamed the station as [station_name()].")
 
 	name = "station charter for [station_name()]"

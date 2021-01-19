@@ -23,7 +23,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	resistance_flags = FIRE_PROOF
 
 	light_power = 0
@@ -326,3 +326,19 @@
 	if (!party_overlay)
 		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
 	A.add_overlay(party_overlay)
+
+/obj/machinery/firealarm/directional/north //NSV13 Start - Directional fire alarms for mapping
+	dir = NORTH
+	pixel_y = 24
+	
+/obj/machinery/firealarm/directional/south
+	dir = SOUTH
+	pixel_y = -24
+	
+/obj/machinery/firealarm/directional/west
+	dir = WEST
+	pixel_x = -24
+	
+/obj/machinery/firealarm/directional/east
+	dir = EAST
+	pixel_x = 24 //NSV13 End

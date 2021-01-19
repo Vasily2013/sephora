@@ -20,7 +20,7 @@
   *
   * make sure you add an update to the schema_version stable in the db changelog
   */
-#define DB_MINOR_VERSION 3
+#define DB_MINOR_VERSION 7
 
 
 //! ## Timing subsystem
@@ -98,6 +98,8 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
+#define INIT_ORDER_FAIL2TOPIC		102
+#define INIT_ORDER_PROFILER			101
 #define INIT_ORDER_TITLE			100
 #define INIT_ORDER_GARBAGE			99
 #define INIT_ORDER_DBCORE			95
@@ -155,13 +157,14 @@
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40
 #define FIRE_PRIOTITY_BURNING		40
-#define FIRE_PRIORITY_OVERMAP		40 //NSV13 - Overmap SS.
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_ATMOS_ADJACENCY	300
+#define FIRE_PRIORITY_PROJECTILES 	350 //Nsv13 - Lower priority: Projectile movement and processing
+#define FIRE_PRIORITY_PHYSICS		350 //NSV13 - Highest priority: Overmap movement and hitbox calc
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.

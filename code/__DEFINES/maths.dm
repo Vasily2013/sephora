@@ -30,7 +30,7 @@
 /// `round()` acts like `floor(x, 1)` by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
 
-#define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
+#define CLAMP(CLVALUE,CLMIN,CLMAX) clamp(CLVALUE, CLMIN, CLMAX)
 
 /// Similar to clamp but the bottom rolls around to the top and vice versa. min is inclusive, max is exclusive
 #define WRAP(val, min, max) ( min == max ? min : (val) - (round(((val) - (min))/((max) - (min))) * ((max) - (min))) )
@@ -39,7 +39,7 @@
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
 /// Tangent
-#define TAN(x) (sin(x) / cos(x))
+#define TAN(x) tan(x)
 
 /// Cotangent
 #define COT(x) (1 / TAN(x))
@@ -50,7 +50,7 @@
 /// Cosecant
 #define CSC(x) (1 / sin(x))
 
-#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
+#define ATAN2(x, y) arctan(x, y)
 
 /// Greatest Common Divisor - Euclid's algorithm
 /proc/Gcd(a, b)
@@ -113,7 +113,7 @@
 
 /// Finds the shortest angle that angle A has to change to get to angle B. Aka, whether to move clock or counterclockwise.
 /proc/closer_angle_difference(a, b)
-	if(!isnum(a) || !isnum(b))
+	if(!isnum_safe(a) || !isnum_safe(b))
 		return
 	a = SIMPLIFY_DEGREES(a)
 	b = SIMPLIFY_DEGREES(b)

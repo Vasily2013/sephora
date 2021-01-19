@@ -7,7 +7,7 @@ Chief Medical Officer=Mgr
 Master At Arms=Mgr
 Warden=Spv
 
-Bridge Officer=WS
+Bridge Staff=WS
 
 Assistant=EE
 
@@ -43,9 +43,10 @@ Detective=WS
 Security Officer=WS
 Brig Physician=WS
 
-CAG=Spv
+Flight Leader=Spv
 Air Traffic Controller=WS
 Munitions Technician=WS
+Deck Technician=WS
 Fighter Pilot=WS
 
 AI=CPU

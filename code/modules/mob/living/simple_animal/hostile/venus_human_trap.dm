@@ -10,6 +10,7 @@
 	canSmoothWith = list()
 	smooth = SMOOTH_FALSE
 	var/growth_time = 1200
+	pressure_resistance = 200
 
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize()
@@ -54,14 +55,13 @@
 	health = 50
 	maxHealth = 50
 	ranged = 1
-	harm_intent_damage = 5
 	obj_damage = 60
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	melee_damage = 25
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
+	pressure_resistance = 200
 	faction = list("hostile","vines","plants")
 	var/list/grasping = list()
 	var/list/tethers = list()

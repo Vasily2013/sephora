@@ -137,7 +137,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.check_view()
+			buckled_mob.client.view_size.resetToDefault()
 
 //MOVEMENT
 /datum/component/riding/proc/turf_check(turf/next, turf/current)
@@ -334,7 +334,6 @@
 	for(var/obj/item/riding_offhand/O in user.contents)
 		if(O.parent != AM)
 			CRASH("RIDING OFFHAND ON WRONG MOB")
-			continue
 		if(O.selfdeleting)
 			continue
 		else

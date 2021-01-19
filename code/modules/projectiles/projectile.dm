@@ -37,7 +37,7 @@
 	var/datum/point/vector/trajectory
 	var/trajectory_ignore_forcemove = FALSE	//instructs forceMove to NOT reset our trajectory to the new location!
 
-	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
+	var/speed = 0.7		//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -76,6 +76,7 @@
 	var/homing_inaccuracy_max = 0
 	var/homing_offset_x = 0
 	var/homing_offset_y = 0
+	var/targetAngle = 0 //NSV13 - required projectile child
 
 	var/ignore_source_check = FALSE
 
@@ -84,7 +85,7 @@
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	var/projectile_type = /obj/item/projectile
-	var/range = 50 //This will de-increment every step. When 0, it will deletze the projectile.
+	var/range = 70 //This will de-increment every step. When 0, it will deletze the projectile.
 	var/decayedRange			//stores original range
 	var/reflect_range_decrease = 5			//amount of original range that falls off when reflecting, so it doesn't go forever
 	var/reflectable = NONE // Can it be reflected or not?
@@ -104,13 +105,17 @@
 	var/dismemberment = 0 //The higher the number, the greater the bonus to dismembering. 0 will not dismember at all.
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
+	var/faction = null //NSV13 - bullets need factions for collision checks
+	var/next_homing_process = 0 //Nsv13 - performance enhancements
+	var/homing_delay = 0.7 SECONDS //Nsv13 - performance enhancements. 1 second delay is noticeably slow
 
 	var/temporary_unstoppable_movement = FALSE
 
-/obj/item/projectile/Initialize()
+/obj/item/projectile/Initialize(mapload)
 	. = ..()
 	permutated = list()
 	decayedRange = range
+
 
 /obj/item/projectile/proc/Range()
 	range--
@@ -225,7 +230,15 @@
 	beam_index = pcache
 	beam_segments[beam_index] = null
 
+/obj/item/projectile/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	if(!check_faction(mover))
+		return TRUE 	 //Nsv13 - faction checking for overmaps. We're gonna just cut off real early and save some math if the IFF doesn't check out.
+
 /obj/item/projectile/Bump(atom/A)
+	if(!trajectory)
+		var/turf/starting = get_turf(src)
+		trajectory = new(starting.x, starting.y, starting.z, pixel_x, pixel_y, Angle, SSprojectiles.global_pixel_speed)
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
@@ -238,31 +251,30 @@
 			if(hitscan)
 				store_hitscan_collision(pcache)
 			return TRUE
-	if(firer && !ignore_source_check)//nsv13 start - multitile objects
-		var/mob/checking = firer
+	var/mob/checking = firer
+	if(faction && !ignore_source_check)//nsv13 start - multitile objects
 		if(istype(A, /obj/structure/overmap))
 			var/obj/structure/overmap/ship_target = A
-			if(checking.overmap_ship)
-				if(checking.overmap_ship.faction == ship_target.faction)
-					trajectory_ignore_forcemove = TRUE
-					var/turf/TT = trajectory.return_turf()
-					if(!istype(TT))
-						qdel(src)
-						return
-					if(TT != loc)
-						forceMove(get_step_towards(src, TT))
-					trajectory_ignore_forcemove = FALSE
-					return FALSE
-		if((A == firer) || (((A in firer.buckled_mobs) || (istype(checking) && (A == checking.buckled))) && (A != original)) || (A == firer.loc && (ismecha(A) || istype(A, /obj/structure/overmap)))) //cannot shoot yourself or your mech //nsv13 - or your ship
-			trajectory_ignore_forcemove = TRUE
-			var/turf/TT = trajectory.return_turf()
-			if(!istype(TT))
-				qdel(src)
-				return
-			if(TT != loc)
-				forceMove(get_step_towards(src, TT))
-			trajectory_ignore_forcemove = FALSE
-			return FALSE			//nsv13 end
+			if(faction == ship_target.faction)
+				trajectory_ignore_forcemove = TRUE
+				var/turf/TT = trajectory.return_turf()
+				if(!istype(TT))
+					qdel(src)
+					return
+				if(TT != loc)
+					forceMove(get_step_towards(src, TT))
+				trajectory_ignore_forcemove = FALSE
+				return FALSE
+	if(firer && (A == firer) || (((A in firer?.buckled_mobs) || (istype(checking) && (A == checking.buckled))) && (A != original)) || (A == firer?.loc && (ismecha(A) || istype(A, /obj/structure/overmap)))) //cannot shoot yourself or your mech //nsv13 - or your ship
+		trajectory_ignore_forcemove = TRUE
+		var/turf/TT = trajectory.return_turf()
+		if(!istype(TT))
+			qdel(src)
+			return
+		if(TT != loc)
+			forceMove(get_step_towards(src, TT))
+		trajectory_ignore_forcemove = FALSE
+		return FALSE			//nsv13 end
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
@@ -396,7 +408,7 @@
 			direct_target.bullet_act(src, def_zone)
 			qdel(src)
 			return
-	if(isnum(angle))
+	if(isnum_safe(angle))
 		setAngle(angle)
 	if(spread)
 		setAngle(Angle + ((rand() - 0.5) * spread))
@@ -499,7 +511,7 @@
 		var/matrix/M = new
 		M.Turn(Angle)
 		transform = M
-	if(homing)
+	if(homing && world.time >= next_homing_process) //Nsv13 performance enhancements
 		process_homing()
 	var/forcemoved = FALSE
 	for(var/i in 1 to SSprojectiles.global_iterations_per_move)
@@ -529,15 +541,16 @@
 		pixel_x = trajectory.return_px() - trajectory.mpx * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		pixel_y = trajectory.return_py() - trajectory.mpy * trajectory_multiplier * SSprojectiles.global_iterations_per_move
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
+	if(physics2d)
+		physics2d.update(x * 32 + pixel_x, y * 32 + pixel_y, Angle)
 	Range()
 
-/obj/item/projectile/proc/process_homing()			//may need speeding up in the future performance wise.
-	if(!homing_target)
+/obj/item/projectile/proc/process_homing() //Nsv13 - Enhanced the performance of this entire proc.
+	if(!homing_target) //NSV13 - Changed proc to be less performance intensive
 		return FALSE
-	var/datum/point/PT = RETURN_PRECISE_POINT(homing_target)
-	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
-	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
-	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
+	var/targetAngle = Get_Angle(src, homing_target)
+	var/angle = closer_angle_difference(Angle, targetAngle)
+	next_homing_process = world.time + homing_delay
 	setAngle(Angle + CLAMP(angle, -homing_turn_speed, homing_turn_speed))
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
@@ -559,7 +572,7 @@
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
-		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target)))
+		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer?.buckled_mobs) || (istype(M) && (M.buckled == target)))
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
@@ -655,6 +668,9 @@
 /obj/item/projectile/Destroy()
 	if(hitscan)
 		finalize_hitscan_and_generate_tracers()
+	if(physics2d) //Nsv13
+		physics2d.RemoveComponent()
+		qdel(physics2d)
 	STOP_PROCESSING(SSprojectiles, src)
 	cleanup_beam_segments()
 	qdel(trajectory)

@@ -1,6 +1,6 @@
 /obj/structure/peacekeeper_barricade //CREDIT TO CM FOR THIS. Cleanup up by Kmc.
 	icon = 'nsv13/icons/obj/barricades.dmi'
-	climbable = TRUE
+	climbable = FALSE //Disable climbing.
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -58,6 +58,7 @@
 	anchored = FALSE
 	build_state = 0
 
+/* You can reenable this when you fix it, KMC.
 /obj/structure/peacekeeper_barricade/do_climb(var/mob/living/user)
 	if(is_wired) //Ohhh boy this is gonna hurt...
 		user.apply_damage(10)
@@ -66,7 +67,7 @@
 		usr.forceMove(get_step(src, src.dir))
 	else
 		usr.forceMove(get_turf(src))
-
+*/
 /obj/structure/peacekeeper_barricade/metal/plasteel/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
@@ -179,7 +180,7 @@
 
 /obj/structure/peacekeeper_barricade/attack_animal(mob/living/simple_animal/M)
 	M.do_attack_animation(src)
-	obj_integrity -= rand(M.melee_damage_lower, M.melee_damage_upper)
+	obj_integrity -= M.melee_damage
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
 	if(obj_integrity <= 0)
@@ -414,7 +415,7 @@
 		wired_overlay = image('nsv13/icons/obj/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
 
-/obj/structure/peacekeeper_barricade/take_damage(amount)
+/obj/structure/peacekeeper_barricade/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	. = ..()
 	update_health()
 	playsound(src, "ricochet", 50, TRUE)

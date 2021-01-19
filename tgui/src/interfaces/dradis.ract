@@ -1,3 +1,0 @@
-{{#each data.ships:ship_value}}
-	<span class="point" style="left:{{x}}em;bottom: {{y}}em;background: {{colour}}"></span>
-{{/each}}

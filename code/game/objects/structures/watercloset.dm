@@ -287,7 +287,7 @@
 	if(istype(O, /obj/item/melee/baton))
 		var/obj/item/melee/baton/B = O
 		if(B.cell)
-			if(B.cell.charge > 0 && B.status == 1)
+			if(B.cell.charge > 0 && B.turned_on)
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)
@@ -374,7 +374,8 @@
 	name = "curtain"
 	desc = "Contains less than 1% mercury."
 	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "open"
+	icon_state = "bathroom-open"
+	var/icon_type = "bathroom"//used in making the icon state
 	color = "#ACD1E9" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
 	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
 	layer = SIGN_LAYER
@@ -389,13 +390,13 @@
 
 /obj/structure/curtain/update_icon()
 	if(!open)
-		icon_state = "closed"
+		icon_state = "[icon_type]-closed"
 		layer = WALL_OBJ_LAYER
 		density = TRUE
 		open = FALSE
 
 	else
-		icon_state = "open"
+		icon_state = "[icon_type]-open"
 		layer = SIGN_LAYER
 		density = FALSE
 		open = TRUE
@@ -431,7 +432,7 @@
 	toggle()
 
 /obj/structure/curtain/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/cloth (loc, 2)
+	new /obj/item/stack/sheet/cotton/cloth (loc, 2)
 	new /obj/item/stack/sheet/plastic (loc, 2)
 	new /obj/item/stack/rods (loc, 1)
 	qdel(src)
@@ -445,3 +446,9 @@
 				playsound(loc, 'sound/weapons/tap.ogg', 50, 1)
 		if(BURN)
 			playsound(loc, 'sound/items/welder.ogg', 80, 1)
+
+/obj/structure/curtain/bounty
+	icon_type = "bounty"
+	icon_state = "bounty-open"
+	color = null
+	alpha = 255

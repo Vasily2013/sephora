@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/count_objects_on_z_level,
 	/client/proc/count_objects_all,
 	/client/proc/cmd_assume_direct_control,	//-errorage
+	/client/proc/cmd_give_direct_control,
 	/client/proc/startSinglo,
 	/client/proc/set_server_fps,	//allows you to set the ticklag.
 	/client/proc/cmd_admin_grantfullaccess,
@@ -49,6 +50,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/stop_line_profiling,
 	/client/proc/show_line_profiling,
 	/client/proc/create_mapping_job_icons,
+	/client/proc/create_syndie_job_icons,
 	/client/proc/debug_z_levels,
 	/client/proc/place_ruin
 ))
@@ -218,16 +220,16 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = input("Which z-level?","Level?") as text
+	var/level = capped_input(src, "Which z-level?","Level?")
 	if(!level)
 		return
 	var/num_level = text2num(level)
 	if(!num_level)
 		return
-	if(!isnum(num_level))
+	if(!isnum_safe(num_level))
 		return
 
-	var/type_text = input("Which type path?","Path?") as text
+	var/type_text = capped_input(src, "Which type path?","Path?")
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -258,7 +260,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = input("Which type path?","") as text
+	var/type_text = capped_input(usr, "Which type path?")
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)

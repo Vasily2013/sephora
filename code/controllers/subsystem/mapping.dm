@@ -233,11 +233,12 @@ SUBSYSTEM_DEF(mapping)
 	station_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [config.map_name]...")
 	LoadGroup(FailedZs, "Station", config.map_path, config.map_file, config.traits, ZTRAITS_STATION)
-	if(config.overmap)
-		LoadGroup(FailedZs, "overmap", config.map_path, config.overmap, config.over_traits, ZTRAITS_OVERMAP)
-
+	//load in the overmap Z-levels and create the main overmap that we'll need.
+	instance_overmap(config.ship_type)
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
+		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery({"
+			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
+		"}, list("map_name" = config.map_name, "round_id" = GLOB.round_id))
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
@@ -247,13 +248,13 @@ SUBSYSTEM_DEF(mapping)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 
-	// load mining
-	if(config.minetype == "lavaland")
-		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
-	if(config.minetype == "nostromo")
-		LoadGroup(FailedZs, "nostromo", "map_files/Mining/nsv13", "nostromo.dmm", default_traits = ZTRAITS_MINING_SHIP)
-	else if (!isnull(config.minetype))
-		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
+
+///NSV13 RECODE OF MINING LOAD SELECTION
+	//Load Mining
+	if(!config.mine_disable)
+		instance_overmap(_path=config.mining_ship_type, folder= config.mine_path ,interior_map_files = config.mine_file, traits=config.mine_traits)
+
+///NSV13 END
 #endif
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen

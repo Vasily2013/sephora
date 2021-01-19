@@ -54,11 +54,15 @@
 
 /datum/config_entry/flag/log_game	// log game events
 
+/datum/config_entry/flag/log_objective	// log antag objectives
+
 /datum/config_entry/flag/log_mecha	// log mech data
 
 /datum/config_entry/flag/log_virus	// log virology data
 
 /datum/config_entry/flag/log_cloning // log cloning actions.
+
+/datum/config_entry/flag/log_id		//log ID changes
 
 /datum/config_entry/flag/log_vote	// log voting
 
@@ -209,6 +213,10 @@
 
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://github.com/BeeStation/NSV13"
+
+/datum/config_entry/string/issue_label //NSV EDIT: Autotag inround issue reports
+
+/datum/config_entry/string/issue_label
 
 /datum/config_entry/string/donateurl
 	config_entry_value = "https://www.patreon.com/user?u=10639001"
@@ -498,3 +506,43 @@
 /datum/config_entry/flag/grant_metacurrency
 
 /datum/config_entry/flag/respect_global_bans
+
+//Fail2Topic settings.
+/datum/config_entry/number/topic_rate_limit
+	config_entry_value = 5
+	min_val = 1
+
+/datum/config_entry/number/topic_max_fails
+	config_entry_value = 5
+	min_val = 1
+
+/datum/config_entry/string/topic_rule_name
+	config_entry_value = "_DD_Fail2topic"
+
+/datum/config_entry/number/topic_max_size
+	config_entry_value = 500
+
+/datum/config_entry/flag/topic_enabled
+
+/datum/config_entry/flag/auto_profile
+
+/datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
+
+/datum/config_entry/flag/ic_filter_enabled
+
+/datum/config_entry/flag/ooc_filter_enabled
+
+/datum/config_entry/string/redirect_address
+	config_entry_value = ""
+
+/datum/config_entry/flag/vote_autotransfer_enabled //toggle for autotransfer system
+
+/datum/config_entry/number/vote_autotransfer_initial //length of time before the first autotransfer vote is called (deciseconds, default 2 hours)
+	config_entry_value = 72000
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/vote_autotransfer_interval //length of time to wait before subsequent autotransfer votes (deciseconds, default 30 minutes)
+	config_entry_value = 18000
+	integer = FALSE
+	min_val = 0

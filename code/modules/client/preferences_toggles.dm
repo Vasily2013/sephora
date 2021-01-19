@@ -78,6 +78,17 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox, toggle_ghost_pda)()
 /datum/verbs/menu/Settings/Ghost/chatterbox/toggle_ghost_pda/Get_checked(client/C)
 	return C.prefs.chat_toggles & CHAT_GHOSTPDA
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox, toggle_ghost_laws)()
+	set name = "Show/Hide GhostLaws"
+	set category = "Preferences"
+	set desc = "See All Law Changes"
+	usr.client.prefs.chat_toggles ^= CHAT_GHOSTLAWS
+	to_chat(usr, "As a ghost, you will now [(usr.client.prefs.chat_toggles & CHAT_GHOSTLAWS) ? "be notified of all law chanes" : "no longer be notified of law changes"].")
+	usr.client.prefs.save_preferences()
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost Laws", "[usr.client.prefs.chat_toggles & CHAT_GHOSTLAWS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/Ghost/chatterbox/toggle_ghost_laws/Get_checked(client/C)
+	return C.prefs.chat_toggles & CHAT_GHOSTLAWS
+
 /datum/verbs/menu/Settings/Ghost/chatterbox/Events
 	name = "Events"
 
@@ -235,6 +246,17 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_ooc)()
 /datum/verbs/menu/Settings/listen_ooc/Get_checked(client/C)
 	return C.prefs.chat_toggles & CHAT_OOC
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_looc)() //nsv13
+	set name = "Show/Hide LOOC"
+	set category = "Preferences"
+	set desc = "Show LOOC Chat"
+	usr.client.prefs.chat_toggles ^= CHAT_LOOC
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Seeing LOOC", "[usr.client.prefs.chat_toggles & CHAT_LOOC ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/listen_looc/Get_checked(client/C)
+	return C.prefs.chat_toggles & CHAT_LOOC
+
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_bank_card)()
 	set name = "Show/Hide Income Updates"
 	set category = "Preferences"
@@ -247,11 +269,11 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_bank_card)()
 	return C.prefs.chat_toggles & CHAT_BANKCARD
 
 
-GLOBAL_LIST_INIT(ghost_forms, list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
+GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
 							"ghost_blue","ghost_yellow","ghost_green","ghost_pink", \
 							"ghost_cyan","ghost_dblue","ghost_dred","ghost_dgreen", \
 							"ghost_dcyan","ghost_grey","ghost_dyellow","ghost_dpink", "ghost_purpleswirl","ghost_funkypurp","ghost_pinksherbert","ghost_blazeit",\
-							"ghost_mellow","ghost_rainbow","ghost_camo","ghost_fire", "catghost"))
+							"ghost_mellow","ghost_rainbow","ghost_camo","ghost_fire", "catghost")))
 /client/proc/pick_form()
 	if(!is_content_unlocked())
 		alert("This setting is for accounts with BYOND premium only.")

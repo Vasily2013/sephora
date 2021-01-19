@@ -1,10 +1,8 @@
 // simple is_type and similar inline helpers
 
-#define islist(L) (istype(L, /list))
-
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#define ismovableatom(A) (istype(A, /atom/movable))
+#define ismovableatom(A) ismovable(A)
 
 #define isatom(A) (isloc(A))
 
@@ -141,6 +139,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 
+#define iseminence(A) (istype(A, /mob/living/simple_animal/eminence))
+
+#define iscogscarab(A) (istype(A, /mob/living/simple_animal/drone/cogscarab))
+
 GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,
 	/mob/living/simple_animal/cow,
@@ -195,8 +197,6 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isaicamera(A) (istype(A, /mob/camera/aiEye))
 
-#define iseminence(A) (istype(A, /mob/camera/eminence))
-
 //Footstep helpers
 #define isshoefoot(A) (is_type_in_typecache(A, GLOB.shoefootmob))
 
@@ -250,6 +250,7 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 	/obj/item/stack/sheet/plasmaglass,
 	/obj/item/stack/sheet/plasmarglass,
 	/obj/item/stack/sheet/titaniumglass,
+	/obj/item/stack/sheet/nanocarbon_glass, //NSV13
 	/obj/item/stack/sheet/plastitaniumglass)))
 
 #define is_glass_sheet(O) (is_type_in_typecache(O, GLOB.glass_sheet_types))
@@ -259,3 +260,11 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
 
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+/// isnum() returns TRUE for NaN. Also, NaN != NaN. Checkmate, BYOND.
+#define isnan(x) ( (x) != (x) )
+
+#define isinf(x) (isnum((x)) && (((x) == text2num("inf")) || ((x) == text2num("-inf"))))
+
+/// NaN isn't a number, damn it. Infinity is a problem too.
+#define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )

@@ -132,12 +132,12 @@
 	set waitfor = FALSE
 
 	// Perform final composition steps on the message.
-	var/message = copytext(data["message"], 1, MAX_BROADCAST_LEN)
+	var/message = copytext_char(data["message"], 1, MAX_BROADCAST_LEN)
 	if(!message)
 		return
 	var/compression = data["compression"]
 	if(compression > 0)
-		message = Gibberish(message, compression + 40)
+		message = Gibberish(message, compression >= 30)
 
 	// Assemble the list of radios
 	var/list/radios = list()
@@ -148,10 +148,10 @@
 				if(R.can_receive(frequency, levels))
 					radios += R
 
-			// Syndicate radios can hear all well-known radio channels
+			// Universal Decryption radios can hear all well-known radio channels
 			if (num2text(frequency) in GLOB.reverseradiochannels)
 				for(var/obj/item/radio/R in GLOB.all_radios["[FREQ_SYNDICATE]"])
-					if(R.can_receive(FREQ_SYNDICATE, list(R.z)))
+					if(R.hearall == TRUE)
 						radios |= R
 
 		if (TRANSMISSION_RADIO)
@@ -165,7 +165,9 @@
 			for(var/obj/item/radio/R in GLOB.all_radios["[frequency]"])
 				if(R.independent && R.can_receive(frequency, levels))
 					radios += R
-
+			// r syndicate
+				if(R.syndie && R.can_receive(frequency, levels))
+					radios += R
 	// From the list of radios, find all mobs who can hear those.
 	var/list/receive = get_mobs_in_radio_ranges(radios)
 

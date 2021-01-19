@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	name = "random arcade"
 	desc = "random arcade machine"
 	icon_state = "arcade"
-	icon_keyboard = null
+	icon_keyboard = "no_keyboard"
 	icon_screen = "invaders"
 	clockwork = TRUE //it'd look weird
 	var/list/prize_override
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	var/atom/movable/the_prize = pick(contents)
 	visible_message("<span class='notice'>[src] dispenses [the_prize]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
 	the_prize.forceMove(get_turf(src))
-	
+
 /obj/machinery/computer/arcade/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/coin/arcade_token) || istype(W, /obj/item/coin/bananium))
 		to_chat(user, "<span class='notice'>You insert the [W] into the [src].")

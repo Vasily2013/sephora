@@ -20,6 +20,9 @@
 	bolt_wording = "pump"
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
+	fire_rate = 1 //reee
+	block_upgrade_walk = 1
+	pb_knockback = 2
 
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0
@@ -50,9 +53,9 @@
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user as mob|obj)
+/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	..()
-	src.rack()
+	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
@@ -67,6 +70,29 @@
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
+
+// Shotgun Pistol //
+
+/obj/item/gun/ballistic/shotgun/automatic/pistol
+	name = "\improper Solir 4 revolver hybrid"
+	desc = "A retro high-powered shotgun revolver typically used by high ranking officials. Uses shells."
+	icon_state = "shotgunpistol"
+	weapon_weight = WEIGHT_CLASS_NORMAL
+	rack_sound = 'sound/weapons/revolverdry.ogg'
+	bolt_type = BOLT_TYPE_NO_BOLT
+	semi_auto = TRUE
+	fire_rate = 1.5
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
+	pin = /obj/item/firing_pin/implant/pindicate
+
+// Breaching Shotgun //
+
+/obj/item/gun/ballistic/shotgun/automatic/breaching
+	name = "tactical breaching shotgun"
+	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points."
+	icon_state = "breachingshotgun"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
+	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
 
 //Dual Feed Shotgun
 
@@ -133,6 +159,8 @@
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
+	fire_rate = 2
+	automatic = 1
 
 
 /obj/item/gun/ballistic/shotgun/bulldog/unrestricted
@@ -164,6 +192,8 @@
 						)
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
+	fire_rate = 2 //being double barrelled, you don't rely on internal mechanisms.
+	pb_knockback = 3
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/AltClick(mob/user)
 	. = ..()
@@ -227,3 +257,48 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	recoil = SAWN_OFF_RECOIL
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook
+	name = "hook modified sawn-off shotgun"
+	desc = "Range isn't an issue when you can bring your victim to you."
+	icon_state = "hookshotgun"
+	item_state = "shotgun"
+	load_sound = "sound/weapons/shotguninsert.ogg"
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/bounty
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	force = 10 //it has a hook on it
+	attack_verb = list("slashed", "hooked", "stabbed")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	//our hook gun!
+	var/obj/item/gun/magic/hook/bounty/hook
+	var/toggled = FALSE
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook/Initialize()
+	. = ..()
+	hook = new /obj/item/gun/magic/hook/bounty(src)
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook/AltClick(mob/user)
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(toggled)
+		to_chat(user,"<span class='notice'>You switch to the shotgun.</span>")
+		fire_sound = initial(fire_sound)
+	else
+		to_chat(user,"<span class='notice'>You switch to the hook.</span>")
+		fire_sound = 'sound/weapons/batonextend.ogg'
+	toggled = !toggled
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook/examine(mob/user)
+	. = ..()
+	if(toggled)
+		. += "<span class='notice'>Alt-click to switch to the shotgun.</span>"
+	else
+		. += "<span class='notice'>Alt-click to switch to the hook.</span>"
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/hook/afterattack(atom/target, mob/living/user, flag, params)
+	if(toggled)
+		hook.afterattack(target, user, flag, params)
+	else
+		return ..()
+

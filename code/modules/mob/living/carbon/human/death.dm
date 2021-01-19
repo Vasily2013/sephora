@@ -16,15 +16,15 @@
 	if(with_bodyparts)
 		switch(dna.species.species_gibs)
 			if("human")
-				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
 			if("robotic")
-				new /obj/effect/gibspawner/robot(get_turf(src))
+				new /obj/effect/gibspawner/robot(get_turf(src), src)
 	else
 		switch(dna.species.species_gibs)
 			if("human")
-				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
+				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
 			if("robotic")
-				new /obj/effect/gibspawner/robot(get_turf(src))
+				new /obj/effect/gibspawner/robot(get_turf(src), src)
 
 /mob/living/carbon/human/spawn_dust(just_ash = FALSE)
 	if(just_ash)
@@ -54,7 +54,8 @@
 		if(M.occupant == src)
 			M.go_out()
 
-	dna.species.spec_death(gibbed, src)
+	if(!QDELETED(dna)) //The gibbed param is bit redundant here since dna won't exist at this point if they got deleted.
+		dna.species.spec_death(gibbed, src)
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)

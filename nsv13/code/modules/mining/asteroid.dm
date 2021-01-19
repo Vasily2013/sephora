@@ -1,12 +1,11 @@
 GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of shitcode but i cant think of what else to do
-GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 
 //Credit to floyd for the backbone of this code
 
 /datum/techweb_node/mineral_mining
 	id = "mineral_mining"
 	display_name = "Deep core asteroid mining"
-	description = "Upgrades for the NSV nostromo's asteroid arrestor, allowing it to lock on to more valuable asteroid cores.."
+	description = "Upgrades for the mining ship's asteroid arrestor, allowing it to lock on to more valuable asteroid cores.."
 	prereq_ids = list("base")
 	design_ids = list("deepcore1", "deepcore2")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
@@ -14,7 +13,7 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 
 /datum/design/deepcore1
 	name = "Polytrinic non magnetic asteroid arrestor upgrade"
-	desc = "An upgrade module for the Nostromo's asteroid arrestor, allowing it to lock on to asteroids containing valuable non ferrous metals such as gold, silver, copper and plasma"
+	desc = "An upgrade module for the mining ship's asteroid arrestor, allowing it to lock on to asteroids containing valuable non ferrous metals such as gold, silver, copper and plasma"
 	id = "deepcore1"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000,/datum/material/titanium = 25000, /datum/material/silver = 5000)
@@ -24,7 +23,7 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 
 /datum/design/deepcore2
 	name = "Phasic asteroid arrestor upgrade"
-	desc = "An upgrade module for the Nostromo's asteroid arrestor, allowing it to lock on to asteroids containing rare and valuable minerals such as diamond, uranium and the exceedingly rare bluespace crystals."
+	desc = "An upgrade module for the mining ship's asteroid arrestor, allowing it to lock on to asteroids containing rare and valuable minerals such as diamond, uranium and the exceedingly rare bluespace crystals."
 	id = "deepcore2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/copper = 25000,/datum/material/titanium = 25000, /datum/material/gold = 10000, /datum/material/silver = 10000, /datum/material/plasma = 10000, /datum/material/uranium = 5000, /datum/material/diamond = 5000)
@@ -61,41 +60,41 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 	category = list("Asteroid Mining")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
-/obj/structure/asteroid
+/obj/structure/overmap/asteroid
 	name = "Asteroid (Ferrous)"
 	desc = "A huge asteroid...IN SPACE"
 	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_32x.dmi'
 	icon_state = "1"
 	obj_integrity = 100
 	max_integrity = 100
-	density = TRUE
-	anchored = TRUE
+	wrecked = TRUE //Stops it from shooting at you. Disables spawning wreck maps too.
 	var/list/core_composition = list(/turf/closed/mineral/iron, /turf/closed/mineral/titanium)
 	var/required_tier = 1
+	armor = list("overmap_light" = 99, "overmap_heavy" = 25)
 
-/obj/structure/asteroid/medium
+/obj/structure/overmap/asteroid/medium
 	name = "Asteroid (Non Ferrous)"
 	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_96x.dmi'
 	core_composition = list(/turf/closed/mineral/copper, /turf/closed/mineral/silver, /turf/closed/mineral/gold, /turf/closed/mineral/plasma)
 	required_tier = 2
-	bound_x = 64
-	bound_y = 64
+	bound_height = 96
+	bound_width = 96
 
-/obj/structure/asteroid/large
+/obj/structure/overmap/asteroid/large
 	name = "Asteroid (Exotic Composition)"
-	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_192x.dmi'
+	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_128x.dmi'
 	core_composition = list(/turf/closed/mineral/diamond, /turf/closed/mineral/uranium, /turf/closed/mineral/bscrystal)
 	required_tier = 3
-	bound_x = 96
-	bound_y = 96
+	bound_height = 128
+	bound_width = 128
 
-/obj/structure/asteroid/Initialize()
+/obj/structure/overmap/asteroid/Initialize()
 	. = ..()
 	icon_state = "[rand(1,5)]"
-	GLOB.overmap_asteroids += src
+	angle = rand(0,360)
+	desired_angle = angle
 
-/obj/structure/asteroid/Destroy()
-	GLOB.overmap_asteroids -= src
+/obj/structure/overmap/asteroid/Destroy()
 	. = ..()
 
 /datum/map_template/asteroid
@@ -158,13 +157,21 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 	req_access = list(ACCESS_MINING)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/datum/map_template/asteroid/current_asteroid
-	var/turf/target_location
+	var/turf/target_location = null //Where to load the asteroid
 	var/cooldown = FALSE
 	var/tier = 1 //Upgrade via science
 
 /obj/machinery/computer/ship/mineral_magnet/Initialize()
 	. = ..()
-	target_location = get_turf(GLOB.asteroid_spawn_markers[1])
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/ship/mineral_magnet/LateInitialize()
+	. = ..()
+	//Find our ship's asteroid marker. This allows multi-ship mining.
+	for(var/obj/effect/landmark/L in GLOB.asteroid_spawn_markers)
+		if(shares_overmap(src, L))
+			target_location = get_turf(L)
+			return
 
 /obj/machinery/computer/ship/mineral_magnet/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -221,7 +228,7 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 		playsound(src, sound, 100, 1)
 		return FALSE
 	var/list/asteroids = list()
-	for(var/obj/structure/asteroid/AS in orange(5, linked))
+	for(var/obj/structure/overmap/asteroid/AS in orange(5, linked))
 		if(AS.required_tier <= tier)
 			asteroids += AS
 	if(!asteroids.len)
@@ -229,16 +236,16 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 		playsound(src, sound, 100, 1)
 		to_chat(user, "<span class='notice'>Cannot lock on to any asteroids near [linked]</span>")
 		return FALSE
-	var/obj/structure/asteroid/AS = input(usr, "Select target:", "Target") as null|anything in asteroids
+	var/obj/structure/overmap/asteroid/AS = input(usr, "Select target:", "Target") as null|anything in asteroids
 	if(!AS || !AS.core_composition)
 		return FALSE
 	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>DANGER: Magnet has locked on to an asteroid. Vacate the asteroid cage immediately.</span>")
 	cooldown = TRUE
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
-	if(prob(10)) //I hate this but it works so fuck you
+	if(prob(33)) //I hate this but it works so fuck you
 		var/list/potential_ruins = flist("_maps/map_files/Mining/nsv13/ruins/")
 		current_asteroid = new /datum/map_template/asteroid("_maps/map_files/Mining/nsv13/ruins/[pick(potential_ruins)]", null, FALSE, AS.core_composition) //Set up an asteroid
-	else //90% chance to get an actual asteroid
+	else //67% chance to get an actual asteroid
 		var/list/potential_asteroids = flist("_maps/map_files/Mining/nsv13/asteroids/")
 		current_asteroid = new /datum/map_template/asteroid("_maps/map_files/Mining/nsv13/asteroids/[pick(potential_asteroids)]", null, FALSE, AS.core_composition) //Set up an asteroid
 	addtimer(CALLBACK(src, .proc/load_asteroid), 10 SECONDS)
@@ -261,7 +268,7 @@ GLOBAL_LIST_EMPTY(overmap_asteroids) //For dradis to be able to track asteroids.
 	addtimer(CALLBACK(src, .proc/push_away_asteroid), 30 SECONDS)
 
 /obj/machinery/computer/ship/mineral_magnet/proc/push_away_asteroid()
-	for(var/i in current_asteroid.get_affected_turfs(get_turf(GLOB.asteroid_spawn_markers[1]), FALSE)) //nuke
+	for(var/i in current_asteroid.get_affected_turfs(target_location, FALSE)) //nuke
 		var/turf/T = i
 		for(var/atom/A in T.contents)
 			if(!ismob(A) && !istype(A, /obj/effect/landmark/asteroid_spawn))

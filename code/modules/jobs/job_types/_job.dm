@@ -35,6 +35,8 @@
 	//Sellection screen color
 	var/selection_color = "#ffffff"
 
+	//Overhead chat message colour
+	var/chat_color = "#ffffff"
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
@@ -61,6 +63,8 @@
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
 	var/tmp/list/gear_leftovers = list()
+	var/gimmick = FALSE //least hacky way i could think of for this
+
 	var/display_rank = "" //nsv13 - Displays the player's actual rank alongside their name, such as GSGT Sergei Koralev
 
 //Only override this proc, unless altering loadout code. Loadouts act on H but get info from M
@@ -86,17 +90,33 @@
 				else if(!G.allowed_roles)
 					permitted = TRUE
 				else
+					to_chat(M, "<span class='warning'>Your current role does not permit you to spawn with [gear]!</span>")
 					permitted = FALSE
 
 				if(G.species_blacklist && (human.dna.species.id in G.species_blacklist))
+					to_chat(M, "<span class='warning'>Your current species does not permit you to spawn with [gear]!</span>")
 					permitted = FALSE
 
 				if(G.species_whitelist && !(human.dna.species.id in G.species_whitelist))
 					permitted = FALSE
 
+				if(G.unlocktype == GEAR_DONATOR) //Strip out donation items if the patreon has expired or they somehow have someone else's gear datum.
+					if(M.client.ckey != G.ckey)
+						to_chat(M, "<span class='warning'>You somehow have someone else's donator item! Call a coder. Item: [gear]</span>")
+						message_admins("[ADMIN_LOOKUPFLW(M)] Somehow equipped the donator gear of [G.ckey]. It has been removed.")
+						M.client.prefs.equipped_gear -= gear
+						M.client.prefs.purchased_gear -= gear
+						permitted = FALSE
+					if(!(M.client.ckey in config.active_donators))
+						to_chat(M, "<span class='warning'>Your patreon has expired! Your donator item has been removed. Item: [gear]</span>")
+						M.client.prefs.equipped_gear -= gear
+						M.client.prefs.purchased_gear -= gear
+						permitted = FALSE
+
 				if(!permitted)
-					to_chat(M, "<span class='warning'>Your current species or role does not permit you to spawn with [gear]!</span>")
+
 					continue
+
 
 				if(G.slot)
 					if(H.equip_to_slot_or_del(G.spawn_item(H), G.slot))
@@ -152,6 +172,11 @@
 	return TRUE
 
 /datum/job/proc/GetAntagRep()
+	if(CONFIG_GET(flag/equal_job_weight))
+		var/rep_value = CONFIG_GET(number/default_rep_value)
+		if(!rep_value)
+			rep_value = 0
+		return rep_value
 	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
 	if(. == null)
 		return antag_rep
@@ -213,7 +238,7 @@
 		return 0
 	if(!SSdbcore.Connect())
 		return 0 //Without a database connection we can't get a player's age so we'll assume they're old enough for all jobs
-	if(!isnum(minimal_player_age))
+	if(!isnum_safe(minimal_player_age))
 		return 0
 
 	return max(0, minimal_player_age - C.player_age)

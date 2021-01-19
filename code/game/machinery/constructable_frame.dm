@@ -181,17 +181,17 @@
 				if(component_check)
 					P.play_tool_sound(src)
 					var/obj/machinery/new_machine = new circuit.build_path(loc)
+					if(new_machine.circuit)
+						QDEL_NULL(new_machine.circuit)
+					new_machine.circuit = circuit
 					new_machine.setAnchored(anchored)
-					new_machine.on_construction()
+					new_machine.on_construction(dir) //NSV13 - added dir argument for pdc on_construction
 					for(var/obj/O in new_machine.component_parts)
 						qdel(O)
 					new_machine.component_parts = list()
 					for(var/obj/O in src)
 						O.moveToNullspace()
 						new_machine.component_parts += O
-					if(new_machine.circuit)
-						QDEL_NULL(new_machine.circuit)
-					new_machine.circuit = circuit
 					circuit.moveToNullspace()
 					new_machine.RefreshParts()
 					qdel(src)
@@ -262,6 +262,7 @@
 						to_chat(user, "<span class='notice'>You add [P] to [src].</span>")
 						components += P
 						req_components[I]--
+						P.forceMove(src) //For stuff like twohandeds.
 						return 1
 				to_chat(user, "<span class='warning'>You cannot add that to the machine!</span>")
 				return 0
