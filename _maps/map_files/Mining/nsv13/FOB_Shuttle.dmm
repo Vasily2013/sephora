@@ -123,11 +123,6 @@
 /obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
-"aA" = (
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/plasteel,
-/area/nsv/shuttle/fob/central)
 "aB" = (
 /obj/machinery/suit_storage_unit/mining/eva,
 /obj/machinery/light{
@@ -244,13 +239,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
-"aR" = (
-/obj/item/ammo_box/magazine/pdc,
-/obj/item/ammo_box/magazine/pdc,
-/obj/item/ammo_box/magazine/pdc,
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel,
-/area/nsv/shuttle/fob/central)
 "aS" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/nsv/shuttle/fob/bridge)
@@ -297,10 +285,10 @@
 /obj/machinery/airalarm/all_access{
 	pixel_y = 23
 	},
-/obj/machinery/computer/ship/helm/console{
-	dir = 5;
-	icon_state = "computer";
-	req_access = null
+/obj/machinery/computer/ship/helm{
+	dir = 8;
+	req_access = null;
+	req_one_access_txt = "31;48"
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/shuttle/fob/bridge)
@@ -314,8 +302,8 @@
 /area/nsv/shuttle/fob/central)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
@@ -324,8 +312,8 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump{
-	icon_state = "dpvent_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "dpvent_map-2"
 	},
 /obj/machinery/advanced_airlock_controller/directional/north{
 	locked = 0;
@@ -346,8 +334,8 @@
 /area/nsv/shuttle/fob/central)
 "bb" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 9
+	dir = 9;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
@@ -410,13 +398,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/nsv/shuttle/fob/bridge)
-"bk" = (
-/obj/machinery/computer/ship/dradis/console{
-	icon_state = "computer";
-	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/shuttle/fob/bridge)
@@ -631,8 +612,8 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump{
-	icon_state = "dpvent_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "dpvent_map-2"
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
@@ -797,7 +778,7 @@
 "ca" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/nsv/shuttle/fob/atmospherics)
+/area/space)
 "cb" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
@@ -813,15 +794,15 @@
 /area/nsv/shuttle/fob/atmospherics)
 "cd" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
-	icon_state = "filter_on_f";
-	dir = 4
+	dir = 4;
+	icon_state = "filter_on_f"
 	},
 /turf/open/floor/plating,
 /area/nsv/shuttle/fob/atmospherics)
 "ce" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
-	icon_state = "filter_on_f";
-	dir = 4
+	dir = 4;
+	icon_state = "filter_on_f"
 	},
 /turf/open/floor/plating,
 /area/nsv/shuttle/fob/atmospherics)
@@ -882,8 +863,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump{
-	icon_state = "dpvent_map-2";
-	dir = 1
+	dir = 1;
+	icon_state = "dpvent_map-2"
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
@@ -956,12 +937,12 @@
 	dir = 8
 	},
 /obj/machinery/computer/shuttle/mining{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
@@ -973,8 +954,8 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
@@ -996,23 +977,23 @@
 "cB" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-1"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/nsv/shuttle/fob/atmospherics)
 "cC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/atmospherics/components/binary/volume_pump/on/layer1{
-	icon_state = "volpump_map-1";
-	dir = 4
+	dir = 4;
+	icon_state = "volpump_map-1"
 	},
 /turf/open/floor/plating,
 /area/nsv/shuttle/fob/atmospherics)
@@ -1044,8 +1025,8 @@
 /area/nsv/shuttle/fob/central)
 "cI" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 1
+	dir = 1;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
@@ -1121,15 +1102,15 @@
 /area/nostromo/maintenance/exterior)
 "cV" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 5
+	dir = 5;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
 "cW" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 10
+	dir = 10;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
@@ -1143,15 +1124,15 @@
 /area/nostromo/maintenance/exterior)
 "cZ" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 6
+	dir = 6;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
 "eC" = (
 /obj/machinery/computer/ship/dradis/mining{
-	icon_state = "computer";
-	dir = 1
+	dir = 1;
+	icon_state = "computer"
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/shuttle/fob/bridge)
@@ -1166,8 +1147,8 @@
 /area/nsv/shuttle/fob/central)
 "lm" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 4
+	dir = 4;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
@@ -1191,10 +1172,10 @@
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
 "qq" = (
-/obj/machinery/computer/ship/tactical/console{
-	dir = 6;
-	icon_state = "computer";
-	req_access = null
+/obj/machinery/computer/ship/tactical{
+	dir = 8;
+	req_access = null;
+	req_one_access_txt = "31;48"
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/shuttle/fob/bridge)
@@ -1208,7 +1189,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/ship_weapon/pdc_mount,
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
 "vx" = (
@@ -1218,8 +1198,7 @@
 /turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
 "wr" = (
-/obj/machinery/computer/ship/dradis/console{
-	icon_state = "computer";
+/obj/machinery/computer/ship/dradis/mining{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -1244,8 +1223,8 @@
 /area/nostromo/maintenance/exterior)
 "CG" = (
 /obj/structure/hull_plate/end{
-	icon_state = "tgmc_outerhull_dir";
-	dir = 8
+	dir = 8;
+	icon_state = "tgmc_outerhull_dir"
 	},
 /turf/open/floor/plating/airless,
 /area/nostromo/maintenance/exterior)
@@ -1282,19 +1261,6 @@
 "Pc" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/nsv/shuttle/fob/central)
-"WK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/ship_weapon/pdc_mount,
-/turf/open/floor/plasteel,
 /area/nsv/shuttle/fob/central)
 
 (1,1,1) = {"
@@ -6436,7 +6402,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 cI
 cY
 aM
@@ -6456,7 +6422,7 @@ cM
 cE
 cY
 cX
-cQ
+aa
 aa
 aa
 aa
@@ -6508,7 +6474,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 cV
 lm
 ac
@@ -6528,7 +6494,7 @@ cE
 bR
 lm
 cZ
-cQ
+aa
 aa
 aa
 aa
@@ -6581,7 +6547,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 ac
@@ -6598,8 +6564,8 @@ cv
 cE
 bR
 ca
-cQ
-cQ
+aa
+aa
 aa
 aa
 aa
@@ -6653,7 +6619,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -6668,10 +6634,10 @@ cE
 cj
 cw
 cE
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -6725,7 +6691,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -6734,16 +6700,16 @@ au
 aG
 aP
 af
-WK
+bs
 av
 cE
 cE
 cE
 cE
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -6797,7 +6763,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -6812,10 +6778,10 @@ bT
 ck
 cx
 an
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -6869,7 +6835,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -6885,9 +6851,9 @@ cl
 cy
 cG
 cU
-cQ
-cQ
-cQ
+aa
+aa
+aa
 aa
 aa
 aa
@@ -6941,14 +6907,14 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
 an
 aw
 av
-aR
+av
 fi
 bs
 bK
@@ -6956,10 +6922,10 @@ fi
 cm
 yn
 an
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7013,7 +6979,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -7028,10 +6994,10 @@ bV
 bV
 cz
 aN
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7085,7 +7051,7 @@ aa
 aa
 aa
 aa
-cQ
+aa
 ab
 cI
 cY
@@ -7100,10 +7066,10 @@ Iu
 Iu
 Iu
 an
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7229,8 +7195,8 @@ aa
 aa
 aa
 aa
-cQ
-cQ
+aa
+aa
 aN
 aN
 aN
@@ -7247,7 +7213,7 @@ cH
 aN
 aN
 ab
-cQ
+aa
 aa
 aa
 aa
@@ -7301,12 +7267,12 @@ aa
 aa
 aa
 aa
-cQ
-cQ
+aa
+aa
 af
 aN
 aN
-aA
+aw
 aK
 aT
 Pc
@@ -7319,7 +7285,7 @@ aN
 aN
 af
 ab
-cQ
+aa
 aa
 aa
 aa
@@ -7373,9 +7339,9 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
+aa
+aa
+aa
 ao
 aS
 aS
@@ -7389,9 +7355,9 @@ aS
 aS
 aS
 ao
-cQ
-cQ
-cQ
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7445,10 +7411,10 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 ao
 aS
 aL
@@ -7460,10 +7426,10 @@ bZ
 eC
 aS
 ao
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7517,11 +7483,11 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
 ao
 bO
 aV
@@ -7531,11 +7497,11 @@ bQ
 Ji
 aS
 ao
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7589,25 +7555,25 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
 ao
 aS
 aW
-bk
+wr
 Fl
 wr
 qq
 aS
 ao
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7661,12 +7627,12 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
+aa
 ao
 ao
 bl
@@ -7674,12 +7640,12 @@ bl
 bl
 ao
 ao
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7733,25 +7699,25 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -7805,25 +7771,25 @@ aa
 aa
 aa
 aa
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
