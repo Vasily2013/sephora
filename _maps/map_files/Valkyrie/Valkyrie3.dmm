@@ -1711,18 +1711,17 @@
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/port)
-"ex" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = 26
+"ey" = (
+/obj/structure/grille,
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/port)
-"ez" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/port)
+/obj/machinery/porta_turret/ai,
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai)
 "eA" = (
 /turf/closed/wall/r_wall/ship,
 /area/nsv/weapons/port)
@@ -2055,25 +2054,25 @@
 /turf/open/floor/plasteel/ship,
 /area/hallway/nsv/deck3/frame1/port)
 "eZ" = (
-/obj/structure/closet/crate,
 /obj/structure/sign/warning/explosives/alt{
 	pixel_y = 26
 	},
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/port)
 "fa" = (
-/obj/structure/rack,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/port)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/porta_turret/ai,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "fb" = (
-/obj/structure/rack,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/port)
 "fc" = (
-/obj/structure/rack,
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 26
 	},
@@ -2871,13 +2870,6 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/nsv/weapons/port)
-"hg" = (
-/obj/machinery/door/poddoor,
-/turf/open/floor/plating,
-/area/nsv/weapons/port)
-"hh" = (
-/turf/open/floor/plating,
 /area/nsv/weapons/port)
 "hi" = (
 /obj/structure/lattice,
@@ -4822,54 +4814,12 @@
 /turf/open/floor/engine,
 /area/nsv/weapons/port)
 "ln" = (
-/obj/structure/closet/crate,
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
 /obj/machinery/light,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/port)
-"lo" = (
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc,
-/obj/structure/rack,
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/port)
 "lp" = (
 /obj/machinery/camera/autoname{
 	dir = 1
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc,
-/obj/structure/rack,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/port)
-"lq" = (
-/obj/structure/closet/crate,
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
 	},
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/port)
@@ -8458,56 +8408,14 @@
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/starboard)
 "su" = (
-/obj/structure/closet/crate,
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/starboard)
-"sv" = (
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc,
-/obj/structure/rack,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/starboard)
 "sw" = (
 /obj/machinery/camera/autoname{
 	dir = 2
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc,
-/obj/structure/rack,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/starboard)
-"sx" = (
-/obj/structure/closet/crate,
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/pdc{
-	pixel_y = 8
 	},
 /turf/open/floor/plasteel/ship,
 /area/nsv/magazine/starboard)
@@ -8963,13 +8871,6 @@
 "tx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
-	},
-/turf/open/floor/engine,
-/area/nsv/weapons/starboard)
-"ty" = (
-/obj/machinery/computer/ship/munitions_computer{
-	dir = 4;
-	icon_state = "munitions_console"
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/starboard)
@@ -10362,13 +10263,6 @@
 	},
 /turf/open/floor/engine,
 /area/nsv/weapons/starboard)
-"wt" = (
-/obj/machinery/door/poddoor,
-/turf/open/floor/plating,
-/area/nsv/weapons/starboard)
-"wu" = (
-/turf/open/floor/plating,
-/area/nsv/weapons/starboard)
 "wv" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -11017,24 +10911,7 @@
 	name = "Hangar bay"
 	})
 "xM" = (
-/obj/structure/closet/crate,
 /obj/structure/sign/warning/explosives/alt{
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/starboard)
-"xN" = (
-/obj/structure/rack,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/starboard)
-"xO" = (
-/obj/structure/rack,
-/obj/machinery/light,
-/turf/open/floor/plasteel/ship,
-/area/nsv/magazine/starboard)
-"xP" = (
-/obj/structure/rack,
-/obj/structure/sign/warning/nosmoking{
 	pixel_y = -30
 	},
 /turf/open/floor/plasteel/ship,
@@ -52615,7 +52492,7 @@ hQ
 hQ
 hQ
 hQ
-hS
+hQ
 ha
 mL
 mS
@@ -53123,12 +53000,12 @@ HW
 HW
 HW
 ha
-Xn
+ey
 ha
 hR
 iO
 We
-We
+fa
 lh
 ha
 mL
@@ -56461,7 +56338,7 @@ HW
 HW
 HW
 dM
-ex
+fc
 eu
 fE
 gl
@@ -56975,7 +56852,7 @@ HW
 HW
 HW
 dM
-ez
+fb
 eu
 fD
 gk
@@ -57490,7 +57367,7 @@ HW
 HW
 HW
 dM
-fa
+eu
 fF
 gm
 hd
@@ -57498,7 +57375,7 @@ hW
 eu
 eu
 kF
-lo
+eu
 dM
 mU
 MR
@@ -57506,7 +57383,7 @@ ph
 Ac
 mU
 rq
-sv
+sp
 rj
 sp
 tq
@@ -57514,7 +57391,7 @@ vL
 vL
 vL
 xq
-xN
+sp
 rq
 HW
 HW
@@ -57747,7 +57624,7 @@ HW
 HW
 HW
 dM
-fa
+eu
 eu
 eu
 eu
@@ -57771,7 +57648,7 @@ sp
 sp
 sp
 sp
-xN
+sp
 rq
 HW
 HW
@@ -58012,7 +57889,7 @@ eu
 eu
 eu
 kF
-lo
+eu
 dM
 mU
 nA
@@ -58020,7 +57897,7 @@ oN
 pd
 mU
 rq
-sv
+sp
 rj
 sp
 sp
@@ -58028,7 +57905,7 @@ sp
 sp
 sp
 sp
-xO
+yc
 rq
 HW
 HW
@@ -58269,7 +58146,7 @@ eu
 eu
 jO
 kF
-lq
+eu
 dM
 mT
 mU
@@ -58277,7 +58154,7 @@ Ac
 qf
 qL
 rq
-sx
+sp
 rj
 ux
 sp
@@ -58285,7 +58162,7 @@ sp
 sp
 sp
 sp
-xP
+yd
 rq
 HW
 HW
@@ -58798,7 +58675,7 @@ sz
 sz
 sz
 sz
-ty
+sz
 rt
 HW
 HW
@@ -59810,7 +59687,7 @@ fI
 fI
 fI
 fI
-fG
+fI
 fI
 eA
 mZ
@@ -59820,7 +59697,7 @@ mY
 qQ
 rt
 sz
-ty
+sz
 sz
 sz
 RM
@@ -60063,7 +59940,7 @@ HW
 HW
 eA
 fI
-fG
+fI
 fI
 fI
 fI
@@ -60081,7 +59958,7 @@ sz
 sz
 sz
 sz
-ty
+sz
 sz
 rt
 HW
@@ -61091,7 +60968,7 @@ HW
 HW
 eA
 eA
-hg
+eA
 eA
 eA
 eA
@@ -61109,7 +60986,7 @@ rt
 rt
 rt
 rt
-wt
+rt
 rt
 rt
 HW
@@ -61348,7 +61225,7 @@ HW
 HW
 HW
 eA
-hh
+eA
 eA
 HW
 HW
@@ -61366,7 +61243,7 @@ HW
 HW
 HW
 rt
-wu
+rt
 rt
 HW
 HW
@@ -61605,7 +61482,7 @@ HW
 HW
 HW
 eA
-hh
+eA
 eA
 HW
 HW
@@ -61623,7 +61500,7 @@ HW
 HW
 HW
 rt
-wu
+rt
 rt
 HW
 HW
@@ -61862,7 +61739,7 @@ HW
 HW
 HW
 eA
-hh
+eA
 eA
 HW
 HW
@@ -61880,7 +61757,7 @@ HW
 HW
 HW
 rt
-wu
+rt
 rt
 HW
 HW
@@ -62119,7 +61996,7 @@ HW
 HW
 HW
 eA
-hh
+eA
 eA
 HW
 HW
@@ -62137,7 +62014,7 @@ HW
 HW
 HW
 rt
-wu
+rt
 rt
 HW
 HW
